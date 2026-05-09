@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Casa Raíces San Juan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@300;400;500;600;700&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --verde: #4A6741;
+  --verde-light: #6B8F62;
+  --verde-dark: #2E4228;
+  --cafe: #7A4F2E;
+  --cafe-light: #A67C52;
+  --beige: #F5EFE0;
+  --beige-card: #FAF5EA;
+  --beige-dark: #E8DFC8;
+  --gold: #C9A84C;
+  --gold-light: #E8CE7A;
+  --cream: #FFF9EE;
+  --dark: #2C1810;
+  --mid: #5A3E2B;
+  --text: #3D2B1A;
+  --text-light: #6B4E35;
+  --shadow-sm: 0 2px 8px rgba(74,103,65,0.10);
+  --shadow-md: 0 4px 20px rgba(74,103,65,0.14);
+  --shadow-lg: 0 8px 36px rgba(74,103,65,0.18);
+  --radius: 18px;
+  --radius-sm: 12px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+* { transition: background-color 120ms ease-out, color 120ms ease-out, box-shadow 120ms ease-out, transform 120ms ease-out; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--beige);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#app {
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  background: var(--beige);
+}
+
+/* ─── SCREENS ─── */
+.screen { display: none; animation: fadeUp 0.35s ease; }
+.screen.active { display: block; }
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(18px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ─── LANG TOGGLE ─── */
+#lang-btn {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 999;
+  background: rgba(74,103,65,0.88);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  border: 1.5px solid rgba(201,168,76,0.5);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+#lang-btn:active { transform: scale(0.94); }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  height: 370px;
+  overflow: hidden;
+}
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(30,20,10,0.12) 0%,
+    rgba(30,20,10,0.30) 40%,
+    rgba(30,20,10,0.72) 80%,
+    rgba(30,20,10,0.88) 100%
+  );
+}
+.hero-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px 24px 24px;
+  text-align: center;
+}
+.hero-leaf {
+  font-size: 28px;
+  display: block;
+  margin-bottom: 6px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.3px;
+  line-height: 1.15;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
+.hero-tagline {
+  font-family: 'Caveat', cursive;
+  font-size: 17px;
+  color: var(--gold-light);
+  margin-top: 4px;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+}
+
+/* ─── HOME BODY ─── */
+.home-body { padding: 20px 16px 100px; }
+
+/* ─── WIFI CARD ─── */
+.wifi-card {
+  background: var(--verde-dark);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+.wifi-card::before {
+  content: '';
+  position: absolute;
+  top: -20px; right: -20px;
+  width: 100px; height: 100px;
+  background: rgba(201,168,76,0.12);
+  border-radius: 50%;
+}
+.wifi-card::after {
+  content: '';
+  position: absolute;
+  bottom: -30px; left: -20px;
+  width: 120px; height: 120px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 50%;
+}
+.wifi-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.wifi-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.wifi-info { flex: 1; }
+.wifi-net {
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 3px;
+  font-weight: 500;
+}
+.wifi-pass {
+  font-family: monospace;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.06em;
+}
+.copy-btn {
+  background: var(--gold);
+  color: var(--dark);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  z-index: 1;
+}
+.copy-btn:active { transform: scale(0.94); }
+
+/* ─── TOAST ─── */
+#toast {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--verde-dark);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  border: 1px solid var(--gold);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 9999;
+  white-space: nowrap;
+}
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ─── SECTION LABEL ─── */
+.section-label {
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  color: var(--cafe);
+  margin: 20px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--beige-dark), transparent);
+}
+
+/* ─── QUICK GRID ─── */
+.quick-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.quick-btn {
+  background: var(--beige-card);
+  border: 1.5px solid var(--beige-dark);
+  border-radius: var(--radius);
+  padding: 20px 14px;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+.quick-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--verde), var(--gold));
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.quick-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.quick-btn:active { transform: translateY(1px) scale(0.97); }
+.qb-icon { font-size: 30px; display: block; margin-bottom: 8px; }
+.qb-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--verde);
+}
+.qb-sub {
+  font-family: 'Caveat', cursive;
+  font-size: 13px;
+  color: var(--text-light);
+  margin-top: 2px;
+}
+
+/* ─── CONTACT BAR ─── */
+.contact-bar {
+  background: linear-gradient(135deg, var(--cafe), var(--cafe-light));
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(122,79,46,0.30);
+  text-decoration: none;
+  margin-top: 4px;
+}
+.contact-bar:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(122,79,46,0.38); }
+.contact-bar:active { transform: translateY(1px); }
+.cb-icon { font-size: 32px; }
+.cb-text { flex: 1; }
+.cb-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.2px;
+}
+.cb-sub {
+  font-family: 'Caveat', cursive;
+  font-size: 13px;
+  color: rgba(255,255,255,0.75);
+}
+.cb-arrow { font-size: 20px; color: rgba(255,255,255,0.6); }
+
+/* ─── DETAIL SCREENS ─── */
+.detail-header {
+  background: var(--verde-dark);
+  padding: 56px 20px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.detail-header::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 160px; height: 160px;
+  background: rgba(201,168,76,0.10);
+  border-radius: 50%;
+}
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  padding: 7px 14px;
+  color: rgba(255,255,255,0.9);
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 14px;
+}
+.back-btn:active { transform: scale(0.95); }
+.detail-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+.detail-sub {
+  font-family: 'Caveat', cursive;
+  font-size: 16px;
+  color: var(--gold-light);
+  margin-top: 4px;
+}
+.detail-body { padding: 20px 16px 110px; }
+
+/* ─── FLOAT CARDS ─── */
+.float-card {
+  background: var(--beige-card);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-sm);
+  border: 1.5px solid var(--beige-dark);
+  position: relative;
+  overflow: hidden;
+}
+.float-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--verde), var(--gold));
+  border-radius: 4px 0 0 4px;
+}
+.float-card:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.ico-verde { background: rgba(74,103,65,0.12); }
+.ico-gold  { background: rgba(201,168,76,0.15); }
+.ico-cafe  { background: rgba(122,79,46,0.12); }
+.ico-earth { background: rgba(139,94,60,0.12); }
+
+.card-name-wrap { flex: 1; }
+.card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.2;
+}
+.card-type {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--verde);
+  margin-top: 2px;
+}
+.heart-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+}
+.heart-btn:active { transform: scale(1.4); }
+
+.card-desc {
+  font-size: 13px;
+  color: var(--text-light);
+  line-height: 1.55;
+  padding-left: 56px;
+  margin-bottom: 12px;
+}
+.card-budget {
+  font-family: 'Caveat', cursive;
+  font-size: 14px;
+  color: var(--cafe);
+  padding-left: 56px;
+  margin-bottom: 10px;
+}
+.card-btns {
+  display: flex;
+  gap: 8px;
+  padding-left: 56px;
+}
+.map-btn {
+  flex: 1;
+  background: var(--verde);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 9px 14px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-align: center;
+}
+.map-btn:active { transform: scale(0.96); opacity: 0.88; }
+.web-btn {
+  background: transparent;
+  color: var(--cafe);
+  border: 1.5px solid var(--cafe-light);
+  border-radius: 10px;
+  padding: 9px 14px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.web-btn:active { transform: scale(0.96); }
+
+/* ─── STEP CARDS ─── */
+.step-card {
+  background: var(--beige-card);
+  border-radius: var(--radius-sm);
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  box-shadow: var(--shadow-sm);
+  border: 1.5px solid var(--beige-dark);
+}
+.step-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+}
+.step-verde { background: var(--verde); }
+.step-gold  { background: var(--gold); color: var(--dark); }
+.step-cafe  { background: var(--cafe); }
+.step-danger { background: #C0392B; }
+.step-info  { background: #2E86AB; }
+
+.step-content { flex: 1; }
+.step-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.step-desc {
+  font-size: 12.5px;
+  color: var(--text-light);
+  line-height: 1.55;
+}
+
+/* ─── ALERT CARDS ─── */
+.tip-card {
+  background: rgba(74,103,65,0.08);
+  border-left: 4px solid var(--verde);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: var(--verde-dark);
+  line-height: 1.55;
+}
+.warn-card {
+  background: rgba(201,168,76,0.12);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: var(--mid);
+  line-height: 1.55;
+}
+.info-card {
+  background: rgba(46,134,171,0.08);
+  border-left: 4px solid #2E86AB;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: #1B4F72;
+  line-height: 1.55;
+}
+
+/* ─── EMERGENCY CONTACTS ─── */
+.emergency-block {
+  background: var(--verde-dark);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-md);
+}
+.emergency-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: var(--gold-light);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.emg-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.emg-row:last-child { border-bottom: none; }
+.emg-label { font-size: 12px; color: rgba(255,255,255,0.6); font-weight: 600; }
+.emg-num {
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+}
+.emg-num:active { opacity: 0.7; }
+
+/* ─── BOTTOM NAV ─── */
+#bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 430px;
+  background: rgba(250,245,234,0.96);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid var(--beige-dark);
+  display: flex;
+  z-index: 100;
+  padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -4px 20px rgba(74,103,65,0.12);
+}
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 4px 8px;
+  cursor: pointer;
+  position: relative;
+}
+.nav-item::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 20%; right: 20%;
+  height: 2.5px;
+  background: var(--verde);
+  border-radius: 0 0 3px 3px;
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+.nav-item.active::before { transform: scaleX(1); }
+.nav-item.active .nav-icon { transform: scale(1.18); }
+.nav-icon { font-size: 22px; transition: transform 0.2s ease; }
+.nav-label {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-top: 3px;
+}
+.nav-item.active .nav-label { color: var(--verde); }
+
+/* ─── FAVORITES ─── */
+.fav-count {
+  display: inline-block;
+  background: var(--verde);
+  color: #fff;
+  border-radius: 12px;
+  padding: 3px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+.fav-card {
+  background: var(--beige-card);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1.5px solid rgba(74,103,65,0.20);
+  box-shadow: var(--shadow-sm);
+}
+.fav-icon { font-size: 26px; }
+.fav-info { flex: 1; }
+.fav-name { font-size: 14px; font-weight: 700; color: var(--dark); }
+.fav-cat { font-size: 11px; color: var(--text-light); font-weight: 500; margin-top: 2px; }
+.remove-btn {
+  background: rgba(192,57,43,0.1);
+  border: none;
+  color: #C0392B;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ─── ORNAMENT ─── */
+.ornament {
+  text-align: center;
+  font-family: 'Caveat', cursive;
+  font-size: 15px;
+  color: var(--cafe-light);
+  margin: 16px 0 8px;
+  opacity: 0.7;
+}
+
+/* ─── PRICE TAGS ─── */
+.price-tag {
+  display: inline-block;
+  background: rgba(201,168,76,0.15);
+  color: var(--cafe);
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- LANG BUTTON -->
+<button id="lang-btn" onclick="toggleLang()">🌿 ES / EN</button>
+
+<!-- TOAST -->
+<div id="toast">✓ <span class="es">¡Copiado!</span><span class="en" hidden>Copied!</span></div>
+
+<!-- ════════════════════════════════════════════
+     HOME
+════════════════════════════════════════════ -->
+<div id="screen-home" class="screen active">
+  <div class="hero">
+    <img class="hero-img" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAFAAeADASIAAhEBAxEB/8QAHQAAAQUBAQEBAAAAAAAAAAAABQMEBgcIAgEACf/EAGkQAAEDAwEEAwkJCAsNBQcCBwECAwQABREGBxIhMRNBUQgUIjJhcYGRoRUjM0JSYrGywSRDU2NykqKzFiU0NURkc3SCo9EXJic2N1RVdYOTtMLhRWWkw/AYKEZ2hJTSOGaFlbXT1OLx/8QAGgEAAwEBAQEAAAAAAAAAAAAAAgMEAQAFBv/EADMRAAICAQMBBgQGAgIDAAAAAAABAgMRBCExEhMiMkFRcQUzYcEUI4GRsfBC0SRSBrLx/9oADAMBAAIRAxEAPwDU+eFeNjw6+VXTQ40ooFXPEpFHOlVnwcUmkca446xX2K7xX2K444xX2K7xX2K444xX2K73fJXoSeyuOE8GvQDSoSa+Ka44THKuk18RXqOdccKJFe4NdJFdhNccJKTwpFSeNPFAYpIp41xw2MbfofNjrQs8CRRxPCkpY3knhXHAFDIpTo07uKWcZVkmkShQPOlnCCo/HNRbXWkrNqKGhq4xElbfwbzYCXG/Mrs8nKphTWYB2Vhq5Mya/wBn0+3RV99RTfLQOPTNj31gfOR/zJ4eQVTF50bhtU2yL77jcy38dH9tbxkRG3QSAEq9hqrNo2zy33F5y4QSLbcSd4rZGEOn5yRzPlHGl8FC4MYPIUkkYII5pI4ik4alRpbcrDLhbXv7jrQWhXkKTwI8lWrr7Sq47xavDYjySDuSmxlLg/KHV5DVb3W1yrcsofQVIPiuDkaphNSRNOLi8khi65jxizcLf08GcP4K14n9FXyfIasDSWt1ahiuR77CYiFfJS1byHh5QeKT5eVUQedOPdCeotspcW4VKCRk8eJxz9NBLTx8h9etfEixNb6Nje/XCzf7qq1lx+HGtD7Pdmt5Nqe90NU4nH4Jrot9lv8AKUrir0Yqu9oOn5dnmrhagiCFJVlSHAd5t75yFdY8nMdYoYW74yZfX1d5LBDdBWePeNX261S1OpYkPbq+jOFYCVKxny7uK05ovTNi094NrtbEdWOLpG84rzqPE1n/AGSw5Du0u0NxY78haHVL3WmytWOiXxwOOMkceXGthaY2dakumFztyAyfi43nCPN1ek+il6iUm0kDp4xSbZWW0zSrNzYculleZi3FtGHWl+I+OzyK8vI9dVnpPYptF1rMDwsi7PDJ3jJn5YSo9oSAVqPmGD21uCyaEsVnKHlsB99PJx3wlA+Q8k+ijy5UaKndb6NoefHtptXUlhnTcW8orbZ7sZhWe2xE3ySLlJZaShSlI6NokADIQDk/0jVlsxLdbmktssIATyASAB6BTBdydkKKYjbj57RwQPOTS8e2vSQFTH8J/BtcB6TRKMVtExzb8TITtC/bHW9r/ExfrK//ANalUuPI7zYjxzgdtU3qzanp6zbWLpbpMjoPc51EP81KVK8L+lVq6V1NDvkJMqDIbkMJGcg8v7PoqeEembz5jnLMUl5BCPZI6XA5JcU8odbnH2UQddiMthsBBSOpPD2UOefcCynDgJ6k8fbTKe4hpO9KcSwO1zh7abnAjDY/fnISfekAec02cmuqGN4AVD7zr/Z/ZXC1c9ZWRl78EmUlxf5qST7KjEjbps/R0ghG6TlI54iKZSfMXN3PorDS0CcnJNeHlVOStv2n05LMNtsD8KsqV6hge2ozN7orp31MW5iZKkZwiO0hGT5kpSpdccaGwc5xXY5VGtl19u2pdGsXW9WeRapTjriQw+hxKihKylK8L4jeAzx7fTUwZZBHEVxw1AJroIUeqiLURR4JbUfMKCXbV2jLM3v3fVligJ/HTmwfVnNcbhjvolV6GlA1E5m2PZNG/wDjONI/m8d136qTTFvbrsmW4ltOoZYKuRVapAHpJTgemuMJ6OFe4qM2nalswuziW4WuLIp1XJt18Nr9SqmEdtiWwH4b7UhpXELZWFpPqrjluNCnNcFqnq2FJ6jSKgR1Vxw1U2BXJSKWUK4Ka44RUmucUspIrndFccSZSaVaRwzXqk8aXbT4NOAGyxxxXyU0oseFXQAxXHHG7X2K7xX2K444xX2K7xX2K449QgY44rvdAqFbTtpWldnsEOXyaVTnUFUa3sDfkPDtCfipz8ZWB5azTq7ukde3tfe1gjx7LHUshAjMGRJKfItfgg+TcPkzQysjDxDqaLLd0tjZeBXigK/Pu76u19eFb9y1fe0EfFeuzjOP6LZAHqpsxqXUDOEw9odxTJ/Bxr1KWr1k4pD1K8kUfgpebP0IVXyedYv0ptd2u2oJSzdm7uwnmmYyiVw8pQUuA+cmrW0L3StkmPJhaztD9qdKt0S4qVOM+dSCA4j1KHlo4aiuWz2Ano7I7rc0EmlOGKH2yfCuUBq4WqaxPgvJCm3mFhaVAjI4inIUc0/BLgUNeEV8K6ArDDjBr4pzzpUJr7drjhs/HBb3kjjQ4t+EQaN4yMU0lsY4gVjjk4Y9CKayWOYxT7dNeKTvDBFDjByAboCDjFC5TSXULJAyDUhkxt5XKh8mMBkYoGhiZV+s7C3LYdSpDLwV8Vac1QWuNJe5CHHIisx1Z32F8Qnyg/ZWo77H8bhVca/tqXrFLG6MKTS2+ngcu8sMyldLc2SpcdO6vrQevzUKjJ3ZbKuWHUH9IVfmh9jmodU/vhbu8YTv32T4/wCUlKePrxVs6E7nXQViKXry1I1DKSc/dxT0IOMfBJAB6/GzVEbMrBPKtJ5QL0sLlcB3vbbfIlknBW0nKEnyk43fXmp0/siXqC3Ji60dbfiK4iOgnI/p+N+aPTVgtu2u1MhmGlmM2jkEAbo83Z/Rr2PcJ80ly3RVHHN1zgk+viaVGqK5Gytk+Abo3Rmm9Gwe9dO6aENrHhFphQ38daj4yz5VKo3LnXFQwi2yy31Yj5PoHIU7juXdPhSZ6CPkoaSB9ppVd2W2nwnmzjyUewrDI+2xfJBytrvRs/hG1lZ9FPY9qgo8N9mQ678p5CyPVypd7UMgkhpSfSjIpFV7uKub7SR2dGCPVWroRnfY+90IePHaPoqhO6V253DS1xb0do5TTN0WyHZ05aQsxUKB3EoSeBWee8cpSMcCTgXY9cZklHRvhl1s/FWylQ9RrMe0nZvf9b7cbvHs0COzDR0Si6ttLbTKS0jO8QM9RwBkn1kZO6FUXOWyRqrlIoCeiZcZ8i4ypL0mVKcU8+64reU44rmo+U0Ts2pNVaeEV203edbHYilqbcjubud7HBSTlKhw5KBFahtXc/abjRmvdW73Gc6nG+3GQ2w2fMSkqx6aS1B3OthukB/9j1yuMKchslpExSXWHFdQUQAR5wa8KP8A5HoZ39knuO7JpGbLptV2iXEKbn62vjiTzDckMe1pKT7ajk+5P3FaPdOW9PWpXgd+yFvnPk3yePmq+tn+xzQeo9a3+yzdU3B16zvJQLa2lLHSoSlO850vNxIWVJO5u4wM55m+NL7PtFaNSPcHTcKK8BgyQ0FvHzuK8I17mUJyYz0xsz1/qNCDZtK3FqMrk9IAiNecFzBPoBqz9N9zHfHUdLqXUkWIFc2YKC84nydIvdT+jWnMV9WnZKs053Puzm1lKpcGXeHBz90JBUg/7NBCPZVkWPT1ksTAZstlgW1sckxIiGx7BRNhsKGaqzaxtpt+kphsWnIqL5qLfDa0I3lsxlHkDujK3D+CRknhnFcaWXernatPWp28ahuUW129HjPyV7oz2DrJ8g41SWsO6IekXFuy7NtOvTpDmQmZLYWtSsY4txkeGoeVW71V9pPYnrXaPcEar2oXmXFQ54bMUEdOlJ6kp4oYTz4AFRGMkGtF6I0ZprR1u7z07ZYtvQR4a0Jy66flLWcqUT2k12GY5JIw/rSZtNvmrYmndZ3m8R585yOluC4/0LSA+vdbJbaUABnPBWSAD5qtqz9yWGeM/VTLI/iEHc+so/RTDbYB/wC1vZ8j49n/AOIVWtnCABk0UY5OndKKWDPcPuWNJtpxJ1NfXz2hLKP/AC64ldytplSsxdV3tryONMr+hArQvStfhBXxda/CCj7JiHqJ+ZlHUvcr3woWbLqW1TEfgZcdbJP9IFQ/RqmrtatVbL9SuW2NclWe5xwlTvubPUprjkhKt0BBOByUCRwyOIrYe37aizs+sIj25TL2oZyFd5tucUMJHAvrHWlORhPxjgcBkiu+5q2VSp0xW0LWTS3n3nC/AYk5K1qVnefcB6zngMcuzgAHQU12PHVLgiWznukbzbnURNd2r3Ri8u/4LYS8kdq2zwWPySD801ozT11smpbI1d7BcGJ0B4ZS62rPHsPWD5DUT2sbBtNaqS9cLGw3ZrwrKittOGJB+ekcj84YPnrNmnr1qrY1ruQ10TiC2oJnW51XvUlGeCuXE45LHYAeXAOkZmE1mPJsNxpIPDNIqQAabaR1JZtZaci6gsb4cjSE5Ug+OysHCm1DqUkgjFP3E12AGhotNJkU4cFIqrASXEcRXY5Vzwr0HhVSEiah4Ve4rrma93azBxzX1fYrwkVho0K33XFMw2yE58JxXIGovtd1exs70PKvcyQy5NUktW+OskB9/GUg447owVKPUAal9sew84x0LqUYK0r3fBXxGePaDnhWNe6P1kvV+0+W2VJcsll3oUVpXFK1g+/L9KgE/wCzHbSr7VXDPmU6ah3Tx5FXXS4T9Sakfu+ormp2dOc35Utwch2AdQAwAkYGBTr3G/bbve3XD3h6N0kb33oen+UlSuPheqnclNjS/DlRJTxCG9yWgN4Vk/HTnhgU272j99/c8jp2HffOlk+B0a/+Xz15jsct2e04NbRQFYt0m2uT7epqRDL+R0/RlXer3PcUocMEYIPlplvSLbMgzLkXGnlpVGkuZ4t7xwHM+TnjsqYWKTLs0+U6+68StYU625l5t1rAAWDxzu5xnFcuwrZMiMQJbhEhErLjiSN15hSsheTwJHLOOVd22HuhfK/bH88f3zIg8qXCjoVMlLfkszdwPA72+327w48vCp6Lw8yqUyqEgNtKTgZ3s+UL6j5KL3bT0iR37bvv3wfRfEbWnwvBV5U0DnRpK7eGmmwAFIWhzrWCN0b3Zg86PqjI2UJ1+D9PV8//AEmezvXOptCXBFw07IdhpWfuiE8N9mQOvfR1n56SFduRkVsfZDtPsW0W2gxiIN3ZQO+7e4rwkH5SD8ZB6j6wDWBpf7XS5tx759/e97aa/G/K9H/Sn9g1BOtN8auVpmmPcYykqSpgkKbPXnPAp8lPrslHfOxPZVGzZrEj9KgMcKUAqtthm0+FtDs6mJATEv8ACbT35G5Bz8Y32pPsqyxyq2LUllHlWRnXJwksM8r48q6rw1oo5r1WFJxXhr1oceNaEMJDZSrNJpG9RGW2FJ4CmKUlCuNY0EmIqbz1UPnt4SeFF1GmkpvpEkUpmpkDvYJKuFReS34RJqwLzA8FRxUFvHvS1J5VNNYKIPI/tN4L/wBzsf7tqpNb2pj4y8sMI7BxVVb2m4iPN6ADFTW23FxTQ4mhrmbIk7Ea2w/fnE76zxyo5NOvdZsjdZb9OMCo60tbpyVZp2y2AOJqlT9BTj6j6ROcKsU0Cisca6LWTmukIAHCu5OWEcJTg5pZKQTnFckYoTqm8rttpWqMkOylcN4ckCszg3GQNtJ2h2nRsbo17sm4KSChgK3QgHkpZ6h5OZ9FP9guob3e7BOvGpbZ3mJ8jpYzyk7peb3EjITzCOHgk8xyzzqGaP2aG7XlvUerSuQyhXSx4Ln3xfMLd7R2J5dtW5QPc2W2wZdTBd++tek4qG7VNU3PTej5UrS9mlXWYElJUwjf72GPhCgeEvHYkE0VV41fAAdVeZX8F09drtUVl+iB6n5mCGb3cIV8avtpuLsS5sPFxEhtQz0gzneHJWTneB55INa72P7ULftCsyUSEtRL7FQBMiDgFdXTI7UHs6jQra3sbsOsumudqQzZr4o75daRhmQrGPfUDmeAG8MHzjhVCQdL6u0dqpl16M7abtFJLDyTvtr8qTyWg44g4OOYB5esheNzY5ArphoqVvHlQfQt0mX/AE+xOn29cCUcodbIO6VD4yCcEoPMH0dVVZt41tdrvfY+y3RC1uTpiujua46sLTvD9zpUPF4cVqHIHA7RpojtN2l3rVuol7Pdlu+6884WZk9ngVFPBaW1/EQPjOehPGrN2MbE7DoRpE+bu3S+LGXJLifAbJ5htJzu5PM8So8STwxRux3VNx2K6rnWXVOlugYe3O+nei+6W0J8FKm1cnGuvA684OeFa20vqGx6otDN30/cmJ0R4ZCm1ciOBBB4pUDwIOCKOMcgyeA0OVcLViuhXErwW8inYE+ZkvbMd7uqba71pXbP0VlX21qV2QSAKyntjWf/AGm4quxyBWl7PPEs7y3W+l+RiipissO3hBHmKhe1TXMLQVgXdpS0uSXEluFGzxkO9Qx8kfGNFtY6igaXsk263mQIzEQeEc8VE+KlI61HkKzVpu0XrbptDevN86RjT0U7hDa8hLQOQw2e0jitXX1dWKZtRjtyBXDqll8BPYzou6bRdUvbQdbOLkQC90rQVkCSsHglI6mUcAB1+sq1JDkBuMkZ5UEt8RiNGajRmkR4rKQlttAwABT0KGMDlQql4ywbLuqW3AdYeS4kceNVb3RezhrW2knp0GOhN+tzalx1AfDo5qbPn6uw1NkyFNq4Gi8SQiQ3gkZxSrKWllGwscWmjEHc5a4VozXaLbNWoWW9rRGfBBw1IJCWnAOrJVuK8hTnG6ca5kJIUQeYrIPdL6POmdqFyQwlTMOd92w1p4bnSHK8eVLgUR5xWldkeol6u2Y2a+u4Elxksykj4r7Z3Vj1ipGi+W6yH10gull0iuhAJSVV9v0iVV4FU/JOO2zml0jIpm0adIVwokzjpLeaSeYOeFLMrOcUosjFcaMXliDCkSXB4DLSnFY7ACTWCtKWJ7VmomLe+HmjKadkuKzg5xvEg/lLFbw1Vj9id17e8n/qGvzT07qC96echzrVc5Ed8RUhBGFJAUlJUN1QIwcDOMHy1Fqq+sv0lvQpJeZba2Lda9He4N2stxtuooAWWJkaCt5t05JSvpEAjB5EHHLqobLkR7zaWLzbrN7lvsu9G7Oaa+43F/GSrd4oSe0jh5RXum9vV5YZDOobPFuTQ4KXHV0ThHkQcpPrTT5rVWz67XCTItl/m6VeuCcSosyMFRXD2nBKAeJ5EVFKuSK4XY5As203HcuNum29LT6I/fCT0g344Vgl1ojwVt8iQPKKcJtbCZDkfvDvB9qMHWApBcZeSsbrjaVJzlo4BB5pJ5Y4VIIlv+5GO+Lc/e7W18K7Fk98o3PwkdSVdIhXajl2UxmLWYEe1RZiHrPFKFw7ihKw5CHUh0gAhAPDPUM54iu6cINWN7IbCCX0acktzmEt3CQ23IPxkPoaUnJxxSSAEnPWBQlVpbiMXBkhMJppyNbn3d3ilSHN7pD2HBSMnrrq63K0MF9KY7z0vCVuFG6EIfQoKdCVngUrSd5JHLFeNzGZEiTDjuLbTMuTkl1p5KRust7qitRHPiCnynFBlDV14B8u3x5HQSLj0H3W6uQ78To0eK34Pxd/nx50DdiJbbkOw0dFJcU2orWd5JSo/J6+XXwqcS5Ee4xJuoZHTsQulZcjQfB9/W34u8r5O8rq4UKnwXpj0qS0lpxKnEYltqyhCRjKUHmR1YHlolJrg3pUuQdojUN10pqmJcbQ9uSYyt+KRwSflMr+aRnHkz2Vv7Zxqy3a30bA1JbVe9yUe+NE+Ey4OC21dhCsisIS7Y2WJaujcYkMthQeXlR4cuA7MEnyVavcia2esOsf2K3FPQwb8SG297gxOQjinHz0IPHhxbHbVdFrUseRBqouyGXyjXteGva+NXHlHGMmlAMCuUYzXRNEaep8LnTOa3jlT0cKTcSF865mJ7g5CCqultYHKnaWwk1y6nNKwbkA3ZsKaUMVXOoYZU6Tjrq1pjAU2ahV9jp6QjFJsjkdXIqYZRqEIqe2pB6FPmqEyUAaqA8tWJamh0KPNU1a3H2cD6I2cU/ZQAoZNctJCccKjO0zaTp3QrbUN5C7nfZGOgtcUZdOeRXz3QeQ4FSjwSkmqBROER8pBoRfNW6NsY3brqvT1tcHApkTWwr83Oap3WNi2zav0XedT6qu7elLHDguSmbPDyhb6UIJCV7p3hnHNSjkY8BNGdgWw7Z7etnFo1FdbbIkzZrXSPBMlbbeckcEIIHV56NG91Ry3+xOIW0HZ3cFlqLr3TUk9baJzYUfNk1IkQIkmOmTDPSsrGQtKkqQr0gnNRq5dznsulp96tk+GrqUxcHcD+ioqT7KrbUmxzW2ytqRqTZvqharfEaLsiI7hsFtIJWVtj3pwY4nAQoAEg54VzRkZwlsmXiQRwPMV9UA2J7VrVtBiiDNYRa9RNN77kVTmW5KBzcZUeYHWk+EnryCCbAkYSogEeuhwbJeomqvDyryvq0E5HjV9KiwpnRd+RWJPQq3m+lbCtw9ozyPmr41wVHtrgSObX9YNaE0BMuzPQiY5hiA0r47yuX9FIypXkSaE9yfs7ds9jXre/s9JerynfZU8nLjbKjvbxyBhbhwpXAdQ6qhWvYq9qndG2zQqSV2axIDtwKfF3uC3U+kKab8xWK1O0EtNoabSEoQAlKQMAAchTIxyZOTUelEc2i6E05rq0e59+hB0oyWZDZ3HmFH4yF9R8nI9YNZc1HpLaBsNvZvlgua5NrK/fZTSD0LiM8ESWhwCvneojiK2OSaZz2WXIriH2W3m1DCkLSFJUOwg0SWBMZtclYbJdtlh1oluBKUm2XrHGK4vwXfK2r4w8nOrQnPKDI8prOu1PYbFPSXzRR7zdQekct2/uoJHW0v4p8nLsxUCkbT9bytKJ029d197DwS+kYfWj5CnOePKMHy0WcDoVK190IbYpEdHdEJnPOpTHYdhF1wZISE43uXZk8PJV42XahoFaXWWtQQ0bilrBkMrZ8EEnhvJwTjkAcmsoiMDx664daGfMMUKtwUPSprdk+1RcL/ALd9o7NttZdiafhOZ38cGW+SnlfjV8kj4oz5c6L07ZbZpyzMWazxkR4rKceCOKj1knrqk+5e1EIt1kaVejMJElK5TL6WwF7yeCkKPWMYIzywav15TbaOkcWlCPlKOB66tocWup8kmoUo9xcHoPDnXuTUeuWttIW3916itwPyW3g4r1Jyai112y6WjZECNcLiofIaDQPpWR9FPdkPNk0aZy8iyjXUKR0b2KoS77b7osqFu09EYHUqQ6p4/m+CPpqE33abtAnqUGr0qC2fixmktj6CannqoYwiiOksfJaXdo2Zh/S9n1KEAux3lRFqA+I6Mj1KQPXQTuNblIc0fqKyvAhuFcEvMnq3XEAq/SBPnNUPepd4uL5XOuEiU6D8I/KW4fRvEkejFaD7lnRbll0p+y9y6GR+yOIytEYIwGEIUrHHPFRzx4DgB2VA5dTK+jpjgtl9WCQKT4mnbjYJzikCAKEVkOE18DXGa9BpgscNmnCFU0bNLpPCtRw8ZIxXrqqQaXXris0Rw01mQjRl6UOabe+f6s1+cOn7Ab/DhwUyiwrvdBbWEZJOEjFfo7rb/Ei+f6tf/VqrAuzD+B/zBv6yah11jhW5LyLvh1ask0yMXrQuorapXQqYlJHaMKoC6zc4fCZbJCMfGSneFXpqCf3tcHHXG197e9M9IkFWHFJWrGAOWE86bIdt0rwVSGlE9Rxn1c68ev4lZ0pzjlHtv4fXOXclgpe23VcOR00CY/BkZzvMuKaV6cYzRyDqq+lxxXum8p5xCguQCA4rPMEjgQesEceHWM1YFy0hZbu0UojsqX8pPA1GDs1DQd6G6SIzoPgBaN5OKpjrtPNd54Ez+HXVvu7jdq4RJc2G0+yIMYKSlx5CC7uIGeAT1pGTgHOMkcjiphPFihxgIVwjXaJKSCS9nO+kEgPNnwlJzhXDG8UJSSkEmq7v9s1DphgPzo7UuN+GbOAB5RXJnrhOhu5wn4aikK8IZ8E8jTuiLXVDcXK2ecWbfoWLanm1Tkzng9dpDQ3UrkymyniMIUpKOCesBPLhk8afy++I92m/dEJh9nccdda++byVbqU+b2emq6iXCPIH3NIqUW66BSXUyYKFtvNIaU0wndQQBxynjne5njzrOhrkzrTewQie53+cTemd+F+Otze+KmordJciwanfftaHWHIrrU2N0hysPNEZSewHdAP5RqY2mPZ5H7puL0J/72661udH8mguvLYpi6wXDcGZT0pxwF1I4HLZV/y0ceQZPK3N8abuka+aet95iLCo86M3IbIPxVpCh9NPCeNVp3LMxUzYRpxLit9cNpyHvdoacUgewCrK669OPB4U1iTR6mlAa4xw51zvY66MEW6q8wa4S5SiV56q0w+3a8KM8xSor7FCZkYvNk7ycVDdZNLjwnpLY4tJ3z5hxPszU/UkHqoFfYoW2tCkhSSCCO0GgmsoZCW5RDrQVq9gfKbKqsu1xvudBxwxUD71zrqKj5EUJ/NOKm2q7/bNHaIm326qUI8Jkq3U+M4oDgkeUmpa48lc98EQ2u68maadiaX0xEM/V91ATEY3d5MdJzhah2kA7o8hJ8FKiJFsY2LwNJunUmppBvurpSlOyJj6t8NrVxIRnmfncM9QAAAp/YfqT9j216Xetqlpk2+66mZQ9bLjJ8JpDasDox8lJ8BO8OOQkKCcjOu8+Wnxjkmubi8EP24nd2OaxV2WWUf6pVCe5i/yHab/AJufrGim3jhsV1oR1WKWf6pVCu5j/wAh2m/5ufrGjccAR+U/csus+7eNQXHXutYmxvSiypLig5fZKD4LSBhQbV5AMKUCDklCeIKhU42/bRkbP9JDvLdev9zV3ta4+Co75IBcKRxKU5HZklKc5Ipn3OWzpzRmmHLpelKkaju56ec+4d5ackq3M9uVFRPWok10tzq8Rj1v9Cttu+yVnQ1rtOu9Ap7wkWHoxIKTjG7wEgjrOSQ5y3krJPKrP2f6ng650RB1JBSG1PBSJDGeLLyCUrQfMoHHaMGrIucKNcbfIgS2kux5Dam3UKGQpJGCKy/sE6XQ21LVuzOW4roytcmGpecLUgpG8M/KaUx6Uq7KycMIorsdkd+UXWslJr4KJrmQpe9xNcIJpZgqTwppc7gxarbKuso4ZhsrkLPYEJKvspdROKrfuk7n7nbIbo0FYNwW1A86XVhKv0d6uBOO4vtLk23ai2gT2j37d5haClZyACVrHoW4pOfm1oeqS2Pa32e6D2U2Oz3DVdpM9MYSJTEZfSOB1zw15QnJByrrpxeO6H0myst2m1Xm5HqX0AYR/WEH2U2DwLcZOTwi4pJKGsih851Ra51ni/bfNRTSpNs05Agp6lSVreWPQN0e2oledpW0C7gpe1E/EbPxIjaGQPSAVfpUXUMjp5Mtzuhb+9adD+50dxTbl2d71UtJwQ3ulSwPOBu+ms3AAdVO5j02arpJ9yly1c8uvKV9JpqrCRjnSpyy8ldVfZrB1vYTmmjj+VEV6pwZwG1Z89espeKshLQ89ANbyOLVKutvmIm2556HIRndebJStORg4VzGRTuUblcVFdznzZpVxPfDy3B+kTXMdskArWT5BypVcllvgomtU8cM7s88ijcVk+E6+M/OGTXZ6BBwlJc8yaRQ6pxQSyw4snlhGaJwdP6knkd62mYQeRCMUqT3HRUUgXKVwyGMULmPv8gAKsy27JtazsFyEqOD1vHd+mq4ubSmX3WlcS24pB84OKOOfMFyi+CLyg73zzPOtf7A/wDIfo3/AFYj7ayNL4ScHrrXOwQ42IaNHZbED6aJE1jJmum5pdznSKvJWkbCma9BpPIrpNFkEXbNLJPCm6KXbojhVGc0skZrxtNLpTwojgdrHwtG3pPbbnx/VqrAmzXwO9fJAR9ZNb81QM6Vu47YL/6s1gPZ8CO9z1d4px601H8Rj+Xj1PT+FeNkulp74iXNX8cjfqHaDOPIc+EjpX+Vx+ypChIbs9zJ5iZG/UO1HQAa+c+n0Ppa15irSyOLUl2P+Srh6uXsoZqPUNytLLbjS2JW+4EHeSQeJAzw4dfZRIR94HAoFq2MPc9JPU+19ZNM01cZWJSRt0moZRLtssb+8hwH5CfrJpzcosFFujOy+h6AxGSrebz1UptrH950jHIAfWTXV6Se8LcMfe4B/rEVtcZdlFJ+b+xJKSc236IYN6U0beWAGm2WXPwjCt1XqphK2Zz4xLtk1CpHWEvoyPXT6TCt4mvtLjJSsurO+34CvWKcQoNwjgqt12nMj5K1b6T6FU1Rtg+7P9znCtreP7ELuZ1jYlYuFkFyaT99jOb6sfk8x6K6gax05dGu9MvsTXPe0oUFbyVdg6ganDc68i/W+DMjxnmpilgPt5RulKcnhk59lUppyP8A4TYP+sHfrqr06oKcW5cr0PL1TlXhx4zjc3b3IwxsNtyeydNB9ElwVayvJVW9yend2MRU9l0uI9Ut2rUVXox4R4k/ExupS8154XXS28M8q7CQeqjBEUDtpZG7Xxazyrksq7a04XFdCmC5KmFbqhkU8YcS6kKSa4FoVptNZDjZ4U5rwjIrGgE9ylZURLe0llAH8FcV+mP7aie05iRrzbLpvZ006HLbb0Iud1QjkUpV4KVec1Yl5jBvaezgfwJz66ag3cytrv20LXWuHgSHbgYLCj+Cb4HHk4VG1l9P1PRg8RcvoW7tI2f2DXek1afuzG6hCcxZCEguRnMEb6c5HIkEHgQSDVPbNdc3/ZbqlvZntNdBh8BaLwSdxTWd1IJPNGSkZJ3myd1WRurOiwew1GNpmh7FtA005ZL20QQd+LKbA6WK7jAWgnz4IPBQJBBBqrGOCaFm3TLgS21hC9kGrkrVhK7NJSPKS2oAek4FQzYRrHS1m2I2zvy9wGlW2Cp2Wz06elZSnJOU5zn+0Vmi83y6yrbG005f37pabS441Cyo9GtG9gL3STkYSCneKikHAOKj0qO28lKXUggHOeseY9VLlNNlMdK+jp+ppDY9Z7jtR2gP7WtUR32bay50Fjgu/e0J8VXo6z1qUriQE1Mu6d1zqHQWi4E/Tb0dmXLnd7Fx5kOBCeicXkA8M+ABx7ad7LNcaXi7IrBcbxdbLY0phpbdQ5IbZQlSPBUQCeAJGceWqk7q/aHpDV2k7ba9PXXv+RGuHfC1IZWG9zoXU5CyADxUOVZ1bE1kZSljGyLo2O6+OqoS7ZdSlu+w20qkAABL6CBh1AHUesfFPDliqr20oOne6o0RfUqUhm8M97PcfBITvNK/XNfm1AbvKvenZFp1ZbluxXEqHer48Ra0ABba+0EHlzIzjiKRg6w1FtJ2maEna1cht2xu5viGYKA3hTKOkUk+EpXBbTfPGQTjnWV3dpDcrsoVVrceDT8sDqpqk0i5cG3vgzivm3ArrrGJwOaqDurYMiToe3Sm5CW2IlxQp5sjJc30qQnHZgkmrcBqt+6WAOzL/wCvY+k1xxm+3eIKPRBvIFAbZ4gq+NO7DpUuI1JlX9htC0JWQ00pW6D5aJFEJxissrJtICeJxSbjjaeGRWgbdsR02xumbcJstXzQEg+upJbdmOiYYBRaEukdbqs1qrmznqoIzDb915W62yHCexJNKXSJ0LeS1unsxWvIViskIARrZEbx2Ng1Qm3N5tnaJd8Mo4R4/DH4ukWVyju2FXerJYSKjjMFb29xxzqQaEsZ1BrCBZi70PfL27v9mAVfZQyAAEN/yY+tUy2OADatYMf5wr6iq2O4c20mWlbdh2m2cGVNuMojqScCpLbtlmkYmC3ZG3SOuSc5qZF8DxErc85xXnTvn+DIHnVmq41wxwee7pvzGMDTlqgpCY1qt7IHyGQTRJuPuJ8BAQPIAmk+kknkpCPMK5KHFeO8s+Y1qjGPCEucnyxY4B8JQHnNYhvf75TP5dz6xraneaDzKj6axXev3ymfy7n1jSbpFmlIrc0E3Bgjl/8A8rW+wZBTsY0oP4gkj0k1lOQgKfaV80/Sa1xsObA2NaP8tnYV6xQIbbySkiuFJpUjjXCuB41pO0LpBzThArkJrsUSFCiBS7fVSKKWR1Uw4ctHjilycJps149OHOQrThtqJO/pq4pHxobo/QNYC0An7nh9ohIz6Qmv0CuCd+yS0nrjuD2GsA7Px70j5sBj24qD4jL8nJ6fwrxslTx3oF5Tnh3zE/Uu0FdQ2gHB40SceC7PeXEf53EH9U7UfKyXCVGvn0vsfSw4DVuKQ44F8uFDNdNNCzbyDx6Vr66a+bklT6kA45UP1g4o2lKN7OXWvrpp2l+ajr33GTnbQkHRcwde5n9NNP7zHCoVuOOUaF9dFC9tjoTpWUjPNsfXTRe4Og2+HnmI0L66KKrauPuyKfifsvuDZcXfmOqx98V9NPYrW47g9hpN5wCS4Pxivppy0ref9dUQlnkyyLS2EZ6NzV+lGhyW9Iz/ALvP2VSFhTu7WojXULk8P0l/2Vedy46x0irsffH9SqqQsw/wxw/LdX/pcr0NOu6/b/Z5Grm8L3RuPuWCBsbYx/pW5f8AGO1ZwVk1Vncsq/wMsf62uX/GO1ZyVcatjwjy5byYsMZ5UqgUik0simixQV4a9Ar3FcYR7VlyZtUBcp0ZANQjV21WLpqFYX4sBNz91phi7qZPR9Fhpbm94qs+JjHDnnPDFSHbFH3tDXNWOHRVmptt+ZL0UHVl1Bvq0hJ5D7lfqO+6UXhFVFUbFlmgrFtg0/NWlidGnQX/AJJbDqc+dBJ9YFTa1ahs9zH3FcY7qvkb2FDzg8aoWJpGa9eJkqPHY6Jl1KeKVJ5tg8+VHIsJyNLR3xFlDA5toDo9Q41BXr9VDHXDKKp6PTt4jLDJHtNkJjah6fh+9Ev/AJarvuT9UaV0vsbRO1Hf7XaVSpb6ymXJQ2ogL3QrBOcEAYqdS7PZ7zF7290GemebW30Tu8hfheMnwu2oHp3ueNMR9QzOXQNbg6J1S3vi73aBu+fNVU6rtZ+Br9hcqVGOOr+SaX7ui9ltoeDCLnLnPK4ITGhuELPkUoBPtqK3vb9c9QW6ZbtMbNtQFT7Km0yppSy2AoEbyVAKST143h56sKw7LNJ2vAajrJOMhsIaT/VpB9tGL/Y7NZbBKmwrWwl9lvfQrc6Rzxk8irJq9Rk1uTJ0w3w2ZK0/sy1tcU4Rb4cFsDiXnypY/wB0lY9tSK17H1yZC48rUbfTtttOuIYCQpCHVFLajvqV4KlAgHcA4VIdMTJDm1fUXTvOLA0ajdQpR3UFakb2BnHEnjw+gYX0Aha7zeEoQpZGm9PqwnngS3yT5gAT5qX2B0viEs4SA1s2cbO27XdLqpEq4OWrAkE7yFOHLgwMFpKvCaVzBFBdvVm05Z9mkCVZbIzBcXOZ31Nsto3g7Dde8LdTnmlPEqNTDTrL95tusLLbejlS1NNKSyXEjIMmeCfCx2VFe6NHR7OrfbnA6mSLjE321pI3N22vIIzy4EHgCcemuVSS5Fx1M7GW9o6x26/7H5NqujPTx1KkeDvYIUMbqgeogpyPKKpYTDJsOxGUWg2p9MpSggYRvd77pOO05B9NXvspn21elrlaGZLSp0Rb6n2N7CwlQO6rHWDyz5MVlfRkPUKdR6BeuQl+5ClPpte/nod0N5XuDOPk8gPTSqUuzXsVSclbJP1NL2veA50XilW+KG2xPCi0ZODmgiMkh8jkKrjuleOzMD+PsfSasdPVVf8AdFDOzNfD+Gx/1goxeDNlq+DFbf0W9u2JgYyO9G8+o1imxs7zScitHWnbDYrPbY8dq0XOS6hhLbhSptCcgdpV9lFGSi8tmyi5RwkW8H3XB71ER51vY+gGvt2YfjRWvyUFZ9ZIql5m3WSokQdMsJHUqRKUo+pIxQuZto1c8CmO3aYiT8hhaj61GjeorXmIWmsfkX10Uk+NMd/oICazRt+D390+5I3jhUePn/d15P2l68k5A1I+wD1MMNt+3BNR6dLnXqW9Kukx6VMdACnnTvKOOA9XZSrL4zWEiiiqVcssHwmR0SOH3sfWqVbMn4Nr1/aLlcJLUaMw8VLccOAPAVQdiKGmgN7OEJGceWkZ0puO3kgUuLKJbpo0PcNtGgYeQzLkTFDqYiOEH0qxQC5d0FaE+DbNOXN3sU6ptserJNZ6U+w++Sp7croqhp5rWs+SqO0sa2JVpYIuSZt6vrv7l07Aj+Vx5S/oAoLL2w64kZ3ZsKKPxEMcPzyarcSmh4jLivXX3fbh8WP66TJTb3Y2NMVwiTS9oOupOem1TcgD1Nr3B+gBUXWVOFSnFFSlElRIOSa6Cpzh97YR66ey44SnwaxJrkoi1wlgj8lACx5BWoNnWq9Jaf2V6UZvOp7PblItEdJQ/LQkjwR1ZrMc2NIySBwqxdJ7DE3m0xbs/enYnfTKXcMRkBScjON5Wc+qjQuxFnXbbfs0t6lKTfJM4dRgw3Hkn+kBu+2obee6W0+2VC0aXu809S33GmU+rKleynjGwrRbeDK927gRz6a4FtJ9DeBReBsy0FbVBTOjrUpY5Lfb6ZXrVmuyK6EHNoe17TWibOxc58W5zG3pKY4bitIKxlKlb3hqSMDd7euo5B7pfZdJbC3ZN6iE/FetbpI/MCh7arHusEdFpK0tj41xH6lys7rWhCN9a0pT2k4Fcp5EOGD9AbFts2XXTdTF1vZ2VngG5a+gXnswvBqcWu+Wu5oC7fcrdOQfjMPpV9Br8xgtDqCAtLiTzAORXiGWm8FtpDagchSE7qh6RxpmQcH6oI82KXHEV+Y9s1lrG1bpterb9DKeW5cXin80rKT6qm+ntvO122r961e9NRwwifGaeHsSk+2iydhn6ATBm0SR+Jc+g1gDQHCOk/xBj7K2DsD1dedcbHWtQX9UZc91ctlxUdro21Bt1aEkJyccEjr51kPSxwqQf4o39NQ69ZoZf8L2m/dfcNhlLWnLxg5zPiD+qdqOutEPnJwCT9FSSO0tOl7spw5/bGJ+qdoDNSVvgpPDeP0V4S/0fTR+570O66CnroNqxSkQ2QTzea+umpIw3vBBzUX1eshEdB5dM1+sTTtL81GX+Bk225k+4Kh2lAP56aM3c4iRf5lAP6SaD7dOFkUPnoH9Yii93/ckX+Y2/wCkUUPlR939iN+J+y+4PlSSJzoz98V9Ndd/qQ4TntplN/fJ8D8Ir6aaTFEBRB7aKvkfOOzH0+7q/ZRp1W98E68fW0f7aq2wLK9qsJ3+Pur9e/8A21Kpryv2RWw58UrP9XUW0qkK2iQT19Ks+yvXoXdft/s8bWQWF7o3D3LfDYvEPbc7if8AxjtWVvYXiq17l3/Inbz2z7if/GO1Y6vhPVVS4R489pMdpPGl26bINOGqaKFxXteDlXtcCRfaq30mz28DHHvZVZvsIC16KSOf7JiPR3lJNaZ2ho6TQ93T2xV1lrRcjpdcaRtxPBF2XI9UZ1P/ADVDql3i/Rvus0Bp3hJuv87a/VIqe96x/wAAj1VWioUs32QuDNlR1uYcU2yQpClJAAyFDHVUvYXfm2v3wiPHsehKSfWlePZR1WJxUccAamnMupMim2OMy3qPZy42gJUNUADh2w5VSG3j++a5fktfUphrWx3m/XHSsktRUJtF5TPcIWVb6RHeawAQMHLoOePLy0StY/vkuuerov1aaflNoGLahgNxgM8aR1FFemWtbDDcVxS91JRJGUKTvDOR6PXil0cFClH+GM8qeIwQC2bOYtt1XK1KxMEWW/HEVKW3VFttoJA3QDzPDmSTxp/adI2SHdn7qmUtVwkNJYekMHcUpCSSlPDgAMnkBzqYDvU8SlGfya7xGznA9VTyjJ+ZjUfQj8SyWO3tKagWRshXjkNDwuJPHPlJPpqh+7Q3Y+i9PCPbwz+3B/4V+tLqdSBuoFZx7uIk6X0vx/7Xc/4V6lNdKayOpSzwVtqmVMt98bvdnuRhyo0hY6QcPBUd0pJ5EEJ8U8Dw6wKN3GM5bLLsYhutKaWhyagoVjKfeRwOKhlycUm13gS/C+6220Z6iSo+nzDjX2l7nOmStEwJcpyQzb7/ADm42+c7iVRAspBPHG8SQCeGcDhSdO8QaPS1KUpqRfbc+PCjqkS5LcdhAG844sJSnJwMk8OdOP2eaGjsjvrWFlZUOpUxv+2oLtNP+D25+Zr9YmguiNmWjbppO13S4Rp7kuZGS88UT3G0bx7EpIArExckWh/dT2dgeDq+2O4/Bby/qg1C9sW0LSWotEqtdlubsuX3y0vcEVxAISrJO8pIFEIOy/RTSMN2Nbw/GzHVfSqgu0rQtis+j3LjbbNFhPB5tKXGkkqwVAEZPkoxZVVu3mAFqzuUUFxjY4h2vbEy2bgwy+kKZUspWMdW4r+yr501p7SbVlS6xb7Qy90BWV/cSFk9pwhas+fjXS4NUukohu6RSnwUNn8pVPI7d5l/uKxyZI/ERnHPqpNXJaQuI82uIlW62MDo1SD+pZT9PpqT6AYfk6dMhuOtRXOmH3yFJcH7ocH3x5I/9dtJ0V1epCudlRn1jTmupPwOnrk3nl0kItY/P3a9VbrlapzcO7sKYmJPviFFJI6+okVpOVFjpViXEisEfH71goz/ALxxavXVGbSnG3No8xbTqXUe9gLSWyD4A/Bjd9VV2VxghVdrlyCP4Ln8Uim9osD2rrqxaIq1oWp0AqSgKI8FSuRKR8XHEjnXjzu7GwD97RTvZdFZm6zajvwm5qVu/ArjoeCve3OpxSUfnHFJQ5vYNq2T6fgnN31QmAR4wemwWPrLcpsjS2g1yNyDqCHcUDmpi7Lez/RYYHsq0rsI9qtym2WF2zG74O9Z4yRx6gnfVQP3aBT4V1hKH/zGd781hr6Kl1l0q2oxGaWPWnJkT09YLEqY8W7TLuLTUpQQlVnmyE7vDPFxaE+v08KnFqtUXpC9Z9m96bCOCpKINqioB/27il+w0Dt76JDE4pKXwZjnjRLlMTyHzkg1KtPWd3vV39oUl1x3KVsaVbbVy+VJcOazQ2zlPEmDq+7HY8Vc58VYb73ssVXybjrFqMr8yMwQfNmqTwhxaQofGxWgCqfCT0S5uoYY5FBdssVv9EFYqgoLCnHUHq369C/YDS97k7usYYHAcq0Xo3/E2zfzFr6orPN/UWxgVofQXvmhLKs8+8WvqilU7tjL9ooqvaxtQvultSPWm22+ApsR0OBx4KUSVE5GARyxUAmbStrcn9zw0x/5G1kfrCacd0L/AJRXB/FWvpVTrazfLnZ7dBXbXGm1OvkOb7e9vJCcgcxjjg+ilTm1NRXmDCHUsg/uu1Y0zZv9Y/8AkrqB9yupg7ZLe1JgxZjb8V9ncfbC0pykHeAPDI3fbU37r5Q9yLGz2zVK9TSh9tQbuVBnbbaR+JfP6BpqJ2a3uWzfZ9cnC5O0Rp59Z5rMFAV6xio7P2C7KpbpdTpcw1nrhTXmB6kqxVi5NOYnHnTUwMGJNQaN0a1rW/2yK/qVqLbJAYSodArd8HJ8NxWVD0cKj+otNwbM7EfttyfmRpsfp0GQ2EOJ8NaCCBw5oPGrO02rptsmpXUNJebRelBxtXJe6ynI9aTUN29S4y9YQU25l2PFFpaU224jcUnLr2cpHAcQaXKeZYDisGou4+tcu37DFy5ExTrE9+TIjsHlHSFKQUjjyUpBX1cVmsxWx7ve3y3eyOyPbWte5k//AE22Bfy4Ly/WpZ+2sgQV9JZCv5bDJ9opev8Ak4KfhnzH7r7h+ySgvR15Ged5jf8ADuUKUrfcQM+WntkYUjSV4H/e8Y/+Gcoe2CmapJ6kgV4WMP8ARH00fP3CkVWI4OeIzUa1c372wf400P61NGWX8MLGfjYoRq9Y70jK7ZbJ/rBVGnjixA3/AC2S/bq8Pct1I/Dt/rEUdvX7ijq/7vt/sUmoxtqBXDWO11r9YipNfzuIhM/KgQvpTWVb1R939iZrvP2X3Bz8benSHO15we00NuDe4hzPWaLyXwi5uM/j1fSaG35QS0o9hpkFiQ6b2IpOX/fBbuPWv6tR/R3HaNbR+OV9BovPcHu9b1E8Bv8A0UH0ecbRrafxyvoNevSu4/Y8HVT/APZfY3D3LBzsOth/jtw/4x2rMxnjVYdynx2GWz+f3H/jHqtAVSuDzJ+JnrYOadtA0i0KdN8qIWxRPKvjyroV51GtQpgPXf8AiXdv5qv6KyHs7/y1WHyOOfql1rzXhxou7fzVf0VkPZ3/AJarF/KO/ql1PqPsW6XwstW6x5itbXdMFgrWmQlskz1R1fBNngBzo7A1DfY3S9P+yCMGV9GvcdYkoCuzw0pPqpvC6A60v3Sc+/kffMfwZr8Yj/mpWXHjyO/f3b+7kfBeH96T8lCvp9NS1ppD7GEbbtIW/qS32RmfFkyJExEd9p2OW3G0kEk5SVDOMcDjnUutR/vkuxP4r9WiqOtRxtttjHfPTYnNfC7u/wDBfypP6Aq7racaku3+y/Voqqt5wTtYyG0KJWkeWmOo5V7iOoVaocWWSPFffU0PWAafMcXUny1xqWW3BhKlutuuIaTkpbSCo8ccASO2qLU3HZ4J08SIyl/XD3jt2WLnsUtzH0U3fg6xeV4WoGmR2MRR/wA1DztY0jvKbRLZCkHCgX28g9hAJNcR9pkGVbrhc4cMSIdtz32ttxalIIAOAkIyrgRyqCdGf8mUqz6IIfsevri96TrC7OD5KEobH6IB9tUn3Wdtatmk9MMNTJEpfus5kvKz/BXqnkjbVbP4Ow85/wDROD6xTVVd0nqdWrNFaZuCW1Nt+7rrO4pncVlMVWeSlfKraqFFPc2M22gZtGjd7WCd/rJH1nKhez6LMGuLDPU9mG5dJDSG94+C4mNlSscuIUkZ+b5BU02lvdJYJ3H/ALSR9ZyovoVf7eaUb7L5NV64if7KynaEv75Feo8USz9ri+j2ezFdrzCfW4kfbUi2VMdJoLT/AGd4o+2oBtxvT0O3W+zIZaU3cFkrWpeFI3CFDAxxz18Rjy030jrbV9u0rbbZAt1nLEVkISuQpSicY6h56GMdgbGaLgR0gDgCKi+3L/J7K/nbH1qiWyzXOsb1tCasN7NpEMwHJOIjK0q3kqQBxUo8MKPsqSbfXui0Shv8NPbT6gT9lMSExKR0+gOXyECrdCnCTgDqbUevP0VpWxOuJ0wkJRdV/cpwUqnqHoCG0D1HFZm0mc6ltozgla8bqjn4FfyeNaMtrEj9jAVIjNuN96K+EYB6j+ElgewUx8S9jbv8QAmK6p6O2Yz6w8tA98iPKxlQH3x9I66OaMjtxbCWn4KDuy5YCzGgJI3X1gfCPKPD2VF4oisPx19DAT781klqAk+OnrLijUz0iWl2RTbVxjM5kyj4MqCjnIX8llXs9FeV8Fx0SKvib8IQU+Ohw3eUxxjxBOt7fb8hlR9pqjtpz27tCnKW47KG6jwumDw+CHXuJHsq8nLc2riu7SXOHxL68B1/FbZA9VUftVjsx9oc3cUtat1HFbq3D8EOtwb1evfnpR51GOohy3FPFSEocHggZ3aObLY6pGsY7SmS/wC/Abve7Tn3tzqcIR+caDIXurOesDroxsuYMrW8ZvoOny8TudG25nwV/FcISfSaQit8F5KWYLD6RIXD8HkXrRHA/NQsj11FxdvB432KfC+PqhKP1DIqVPFEFl9Jly4JCeSU2dgD2KNRdF18HhqdHjcnb3ER+qZqD4n/AI/r9g9F/l+gJhvoDNzUZDbv3Y8Md/XKV1jqSADU/bgsONMEWmC/4Gcr0bLe7PjuOCoNBlLkw7mlVxbV90vK8DUMlfZ1NtippaBGnWxh10tuc05Wi5y+zqyBRfDVmTX0M1y7iZ6pq7sP9HC03PCPwsawwYqf61wn2VS0MBpKEkcd+r3NisziffbRb5B+fpOWv9YuqIuHvUtCRy3zV9yFaWQO1I9lXOtH7OlZ2fWX+YtfVFZi1CsldaY2bH/B7Zf5i19UUNHLH6jwozx3RznR7R1kf5m19ZVfbZAqTBtoA++H9Wab90m6P7pTif4m19ZVK7XZiGIFtP4w/qzSLPnQNp8Ehv3X/wC5LB/OXPqVEu5IRv7bYR+RBkK9iR9tSHuvXyU6cRngXH1epFB+48ZUvbIl0JJQ3bH8qxwBKmwB9PqquMSRmyKXbVutKV2JJpAV2s4iu459Gv6K3GDFyZM0OD+zzV+P9LPfqqgu1h7vi9WZ/Kj0mn4isqBB4qdPEHlUo01qOx2nXWrHLhdYTCV3d3AW+kEgo3cgE8RmojtPltSb/ZZSMBlyxQFJT5CFn7aU49/IxWLowbc7nVsMdzTprqzZt/1pUax1p5AdsbKe2OwPYK2NsOVudzTpnq/vdQf6o1jfRi9+2R08/eWfordevyn7D/hazP8AVfckVpWk6ZvCf+94w/8ACrpktpIlrX2pzSzHvOnbxjqvMf8A4RdMHpBDqPNivBfiXsj6WPn7jNxZSpSR1rzTHVZzCijslM/XFPcb76fKT9FDtWK3Ysb+csn9MVTSu+jL/lsmm2kbkQn8az+sRUj1MPe7e9/EYA/STUf24p/awq/GsfrE0e1UrEKAj+JwvYU0rT/Kj7v7E8vE/ZfcYzmc3Fx/8c59Y0N1MMIcSPlfZRCW+RLfb7HVe0mmF98Ppj2DNUR8Rtj2IRc1AXKH5lfRQjSpxtAt5/Hq+g0/vK8XOHx+V9FD9Lf4/wBv/l1fQa9SrwP2Pn9Tz+qNy9yu0Wthtrz8edcF+uY7Vmg1X/c3I6PYnZU9rktXrkuH7anozmqI8Ihn4mOWzTls01aHCnTYohbFQTXxNfAV8RWoUwHtAOND3c/xVdZB2dr/AMNVk8inT/VLrXu0H/Ea7/zVdY92dn/DVaOP4T9UupNU2s+xZpX3S8rK/HRqfURdfcRmcjhvED9ztfOH/rqrqRNgbk4BDL33cg+EEqPwQ+av7fPXumkhWo9QEBfGajilB/zdrrGKWuDDakT0q3yDMSTvE/gk9qj9B89Ir+WmPlyQ6Huo242l7pHd1U1PgdOrdGGVHxCpI6upB+2rpt3+Md2/2X6tFU1Ez/dntXw/Q9+t/K3PgT+Lx+l/ZVwW5f8AfHduP4L9Wimwl+ZGPqC47P2JDD4hJ8tJaq/et78gfWFKQjlI89DtXSFQ7fMeT74hMRxeD2jj9lX2ET5MmXy3SHNTFpuzXhYcCD0keC8oHwT8ZINTbZlCuY2Ya1YdtVyZkPOLDKXYziXHQGW8bgI3lZIxwzRDT2stQyNb3u3yJDHeLNj79aa6L4N3o2Ffm7ziuFFdM6pvD2z+RfJUiO9IfcgFLgbAAU4whS0pSQee8SKXHD3FymytImltZe8f3q3R/wDaz8ElHv3yfCUKB7Z7ddbXsv0lHu9ulW6SrUL6+gkbm+kGLjjuKI5g9dWNYdVamYg7RpK7pJUbfbGHoJUEe8LU/LSSk+QNoHhfJHbVf90A9JesrSpMl18/sqRub/JINsSSE+QqKledRrWkkxtcnlDPXy0Kt86MV4WqYXEp7QhxzJ9GR66B7O0BzUmls/6VnK9UVP8AbRzX6M2mc72T931uOf2UE2Wnf13pyOeSJs1ePPGSPsqGrwy/vkepqPFH++Yf7oIYm6e/Le+gU10pI3IMAfMb+kU57o49HN02R1re+hNRG16otMWM1HfTH32kI8d0jliigs1oXN4yWRsnnIXtxZQ0MftNI9i26sTujcDRsEj/AEkn9Wuqf2EXCFcduTLsKQh5sWaSFFJzg77fCrb7own9hUD/AFij9WutxgSpFIabKRf4GUIPFXEnH3lfbwrTFvkwBptf7ZQm1d5nKQ/BSfF8jJPrrMmnN33fgk9quSyD8EvqrT9vlufsYUCq8LAhnASm47o8E8ilsD1GjfEvYK3fpIw3LZMfDVwaV2BM5IPP5kepXs+lqRo2FvPyz4/KdKP3xXyWairE9ZY3M3hPkLd0PX5Bj10c0iHl6MhlD96T4/iRLkr74r52K8b4NldXsir4nuo+5K++woZIu6vKj3TX9VIFZ62wv52lzAA+RhHwvSIX8En8L4frp/adU6yuAe74vL/vMlbfvTT6/FqHamfkytdzHprzj75xvLcQpKj72nHBXHlivXlPKwR1Q72wgBxFHNlCEua2jpLYdUXSAkstucNxzl0qkozy5n6KCHxyKL7Ly83rSM8w2pxSHTlCUNqKvBXy6QhA/pEUK5GvgvG9uqj2x9KZL0TgOCfcprHHyKUajzdzcGc6ldRxPj3eC39Vo0avVwn+5r+bdc0cE8lWdPX5Fk0CYvE5rOF3Nnif4dakV5nxT5q44XmP0fh/X/Qzs1xaWzMCrxvfdz//AMSKR8b5jQPqqYabXFcsbGX3l8+I1LcFfG+akD1VB7VqNxtiaTcXUfdz/wAJfILY8btCakVh1kyiysb9+sqTx+G1q02fG+a3RfDF+bL29c+hmo+X+v8AskuYDvNhtz8tdwd+sKzwuV3xKzn75Us1tcBd9Vwp4uDDzHSe+d66mbkshHRq+EcWAUpz8gZzw5VXVpJAZr07Y5FadDTVcpTa+B661LspX0uzLT7nyrawr1oFZO1Qd+QUntrUmwtfSbHtMKP+jWk+oY+ysrXSbczOHdLSFDao8nPKG19ZVOtWaq0LeYjEe4yH3+i9896acR8Xd+LV6642RaM1bqA3y6R5pmFKUKU3MW2kpGcDdSQOs0Af2DbPd4kwJh881w/SqgsqjJpsWrZRWEUz3XDn3dp5ntbkK9W4P+an3cRNZ1zqF3Hi21oet0/2UL7rb9/tP/zaR9LdG+4h/wAbdSf6tY/Wrp6BZqTer3e4Y5g0hk19k1osSNqs6h4VmtyvPHTWQO6l73a23SWmmG0oaiQ2wlKcAYCj9orZCDwrF/dLOh3bneN74qo6fUyg/bQ+Z3kbC2LJ/wDdo02O3TDf6k1jDZ7wiN5/zdlXsramxZP/ALuGl09umGP1FYr0T4MVv+YMn2UrXvFDL/hPzcfUPJOdNXj/AFwx/wAGaFSD74nz0QgOBemr4M8ReWf+EI+yhTpO+M9teHLxL2R9HF8+54PHH5RodrD9xs/y7P1hRBJ8IflUP1h+42f5dn64qqnxxFXy/LZM9uDwNkBzzWyf6xFGdRPb6IySfEhRj6t2ortodKrMlPla/WIo9qNW6PNAZ/5aCCUao+7+wL8b9l9zq4OBc1bnynVH9I0Fu8vwXuPVin89Xv3A8lH6TUZvDp3HfPTIRyxM5YiR28ub9xhkfO+ih1hfLesIr2cbrhPsNLzV5mxj2FX0UNinc1A2eXGvTr4weLqPX6n6BdzW8V7C9POE8VJfV633KnvfFVf3M8hX9wTSvHxoy1et1w1OlSDk8apXBBPlmbu7Vv8AfbRtD06i03m72xhdrccdRDuDrAWoOhIJ6NQ7aphvX+uWnOkY1fqVpW6E+DeHyOAxyKyM+Xrqze7ff3toGnCeP7UOD+vTVE5PbRAMmbe1Pae18Fr/AFIn8qWF/WBohF2wbWEpGNoV99PQK+lo1XnGnDJO6OJrhT5Lh0rtR2l3ZuXGuOtbjKYKUpU28xHKVA5yODYNHdAMMK2jWWV3syHzJ3el86FCq32dcXJOexH21ZehcDW1j/no+hVI1HgfsUUeOK+pb2nUOpv2ocBCsS0DKQSfgW/mGuWkTVuXBKENAJncSrIx72PIMc+vFCY6nhqW+hCk478RzAP3lvtQaWtzsrfuA6Th32MYA+QnlwHsxU1PyollvzZAMf5YrVwY6bv1v8Hv/BH5ufbVv2te9qS7YP4L9WiqeH+VK1fdH/aQ++q/BL/GY/R9XOrY02oq1LeM/Ia+qmghL/lQj7/cPp/KlImFuOSPPQ7Xn7zTh/EnKI27xh56Ha7/AHmnfzNyvWsPMW/7GdbIrGutVHs01/5MSjmnVf4KSOyTbv8AhBUcsyj+zfV3aNOAf1MSjun1f4LHfI/bj/4QUmrhiEAre/v2vamz+DtkT2zJtRrb2P73Yn/zM3//AExNFox+5tqg7YEH/jZlBtuO57hN7vP9lCN7z+5KPsxXSlsx1fzEhprL/F26k8/dYfS55P7KAbM5SEbR7AyF5WiTNUU9gUwlIPsPqqR6wwdOXgD/AEmn5XyldnD870cahmyvw9q1vWeaUvqHoR/1qSnwv++R6eofeiWzt7ixnNDKkrYQuQzLYSy4RxRvOAKx5waU0DZLHK0pYpEyzw3HHIDSlrLeSo44k0ntyONBOcf4ZF/WpqQ7Oo4Vo7TScc7ayT+aK6L7pvLJppe12eC4iTEtkKO4PAStpsBWDwIJqJd026trRNvwTk3Ifq11P7I1ESAgr4hafpqtO6skhOmrY0OXul/5S6KIibKj0sQu9QlYHNf6tdaVt6ZfuBgQmT9yf5hHz4vYZW97M+SsyaJVvXC3k9rn1F1pq3JV+x7HuvCx3py77hfJ8sf/AJs+WifMvYZJ7RAMZl/ok/tcz1f9msf/AORn2Uc2fsyf2G2nFsZ+CH/Zkb5Su2SD7KAR1w+iT+2UPq++QP8A8AfbRnQJgnR1pJuMT4Icl2v5SvlIzXn/AAtbyG617Ir/AEvGUoXDoWGlES3CPuJw4z+U6PZkdhNQ3USUo19cUoCUgL4AN7gHgJ6t449dTnR/ezSZ/gx8d+rzvQmRnzbzvLyjh5Kg+pFoXtAuS0AJR0hwAhKR4iepJI9Rr0GhFLEv4S4Pmpoxswabe1g006x0zalKC0FtpYwQc5DpCMflcKD/AMJd/ITRXZoAdXNZYL2FLO4G2VnkeQeIRnz1keRtiwi7bna7Si1vpZgtJPDlGtA+qaCxYjDecMbo/k7Yn7KdXJG/AfCbTIVy8aDZlfUXmgveboTlNiP/APKrYP8Aza874hVF3LIekf5bZ9ZUrDMwmQ4393P8UyLb+E8qfoqYackNosrAVqOUz43D3Rtyev8Ak81ArPBeSzNxpx0/dz/i2q3n755XfoqW6bZnIsrG5pm8fG+DttpA5n5TuaP4ZFK1pA6jPQRjXZku60srjKl3BtMlRXJW7GkKaHeyvFcSgJa7N88/F5mqftK+DPoq1NcMlzWdpdfss5DjbqlJ74tMYufuZXIsL6IduXPBA+diqjtS8Bk9m7Xo37HaVZB2qHSJ6Owo3jWq9iqDH2UaYZPA+5bJPnKc1k/VXwzq/kM8PUa2FollMXRNlZTjDcJhA/3YoY8AXchs8RTV8ZVTpPKm73OtZMZG7qERntU2VDyk4TEfPFahxLjQ6hRruH0Z1Hqdz5MGMn1uuf2VF+6m/wAbLX/NHf1rdA9g+pdQ6YXqadpxpUiW5HaZDPAhRJWEqwSMlKiCOPb21qfcUhzjmfSbgxX2KyG5rfaMEP8AujP1EO9wC8px4JKRnHEIA6+HCiEPWetN/wB61Tc42OBSqVkZ8pVmky1MUNhpJTNWhKjyST6Kw/3Qit3blqMnOETW+Y/i7RqeM6n1c78Lqq5H/wCrc+w1TO0OXKk6pu0mY849I6ZW+44sqUvDSMEk8eWKKu1WPY6yh1Lc/QzZBFVF7n/TbKjxTpxhP9QKw7oMF+MkZxiEyPZW89CMqj7JbHHVyFjZH9RWAdEKcB3Wz/BWh7KzX/IYXwqX5xILSf73L5n/AE03/wAMaEyHyVDApeA06EzmXpXRB6SHtwsBRJSgowDnsOae9FH/AArh/wBgB9teG5xzz6H0yrk1wDUnJT56G60UQiIn5UhofpCpOmLFWMrck48m6Pspnc7ZaXyjpN9W6oHw1D7BTKb4KayBdRJwaPtrkpK7E3x8LebB/PTUk1IomzrkHn3m2Pq1WevpqpUSUnOQ1IQB601ZlwIk25UU/wCat/QKZdDorh7v7E9NnaWT9l9wbKkEl3meKqjd1fJTjHVRYuSgD9xn840MujrrqTvstN4+ef7aoqnh8C7Yd3kjUn90tHz0P3h7sZohLUO+kDOSKEbxN44VfWtzxtR4Tdfc3ObmwTSRH+Zq+uupYuWoE8ahfc5n/ALpP+Zq+sqpYE5UfOftpnmQmau7RWtWu9O/6pX+vTVKhtxSquru0UOJ13p3/VK/14qlQ44leKcgGLNsrpdLSx2UyXKLfwjiEflKxXzUxDjiW0SWFKV4qUupJPmGa4An2zvhJkD5qftqwNHyOj1xYx/Hh9CqrfQDVzbnyFN2u5KYU2PflQndzIPy93d6z11O9HOdPrmxpaW04536klKFgnGDvHGeqk6jwP2HUeNe5aM2HqRzU91etLSUMl9JPSRwvpPeWsqHgngMGntu09q8BSg8MOr31YZPEnr4po0zqLvG7zICbXJfeY3d8pWhIwUjHM59nVRROo52MpgJSPnzcfQk15EL+iC/3g9S2vqm2RhrR1+a1La728+rvaNNS4+nllISUn2mprpVe9fbysdRQk+hKai2qdczWbhp60uQGnG7vOVFC0yVDoiG1ObxG6N7xMYyOdFNEye97tfR2BrHqFLpt6tVW19f4Zs4ONE/YsaCvCh56Sv8H3UhSIbgKmX2VtLSF7hIV5eqq91ba9R6pdhWy06mm6eQXg4/JiISpzowRlIz2jIzxwTnBxig6dNaoTGDje1rWbf3B3wN4wz4fS7mPgOyvesk5bI8bp2CVp2UoiatvN2eujhFyiGAIYUk9GgJbQlQO7nO62Dx6yfNT+Ds972tdwsy57pa74Zcjp6RveQhtno0pJI4kjHHFBhpXW+Jamtr+o0qaughEuQoKyEko8LJa5jer2ZZNpkFL64+1LpnBcG4KVS7IwpSkKUgZO4U8t6lptIFVA+Jskk96aojXG4/4wttNu97dHvsIbfdd8He8FXwyhx+TVWd0Jp2fYrXbe/HEFVy1KZKUJUD0aEQEsAEg8ThsH+l11bveO1ho4RrzTkgvXLvIdJplSeO6pW9wf8Am1UfdKp1hFasiNT3ayXHobs4yx3hblxilQYSole84veBDgwOHLn1UPXl4HVVYmmR/Vsplm03dK94uKuYLeEpI8FSic54gfk+TPCg2yyOBrbTlz8DEz3RHBPHwA2OJ7OPLz9tfXq4yTd32IcSK9vrU+p1xkOFKj8ZJVlKOfWBU2mTLrJ1Ts3TcY9vbDVqnlt2KskvFRaUpSxupSDk9Wc8aVUu4y/UJdSHu3dTi9BupabW4e/I3BKSo/CA9XmqN6d2sN2e1Q4KdL3NYitBsuIIAOB5RVp5PbT6JAU+nIoFLY7GCu4m3iG0tKlaRui8KBOXEDOPPQDa1tKha5tkKK1Z5dsUxK6bLq0KBG4pOBg+Wr+g2dvcG/zqt+6ZgR4uiLW4OZuqR/VLp9e5NLkq3RhY7/jh1xKGgXcqWd0D3tfEnqFaQha10OuyKiDaBZ+n6BSOjGoZPjYOeG96xislRHMEe+Yo3Ff97x3xjhRuOc/VBN5SXoaMYukOT8DfmHPyLm+59LZo9s+np/YRZMXZI+5kc7opH6KmDWVUqcCiUSFDzAf20ctrs/ofe7jJTw5JcI+g1LpqvwzeN8j7X20UWPp73Zt/T/te/wC/Orc/c258b+RqA6sONcXM5++/8qfmj6BSHfd2aJ3LtNR5pCx/zUDfeeD7kh59xx3fypxS1Eq4dZzk1Q3kTWulh4Onvhz8hNSXZOyp/WLCEoWpRUogISyTwBPJ7wOrrqANTFHJKuYozYZEth9Ehk4IzQrZ5GzfUjRF2t8n3KePuLc/ifwSzL+N81WaCGzuHnYJp89jgK+hVU/MvN2B+EV/u2//AMa4/ZHfAPhE/wD27P8A+NSaqmV1imsbBUYhBotO02ZXek3+91f7ukf/AA9GX8b8upJY7Mz7jM9JpdCzu/G0gwrr8i6oNjUt4Z3wjdO+oqVlhriTzPKiDGsL8hsIUxGUnt6AA+tJBrdNVKqfVsFauuCSJxrmCwzrCEiNbocRvpVoMYWV2Lv5iqJAaQrddPXunHWr4uKpq1u5S0DjkmpDN15em1FIYhj8phSvpXUKEkxwMZqq2XULqTgh5f0hxb47WiPYa13pG421enLWgzGcd7MffU/gx5axfcbnuR3Higq3UKVjOM4BNWc3sHulwgsSBdLc30zSXMOwivGQDjgvy0EXg2Si/EzTCpUQkhuQyrzPJ/trklKuRSfMsf21l5WwbUDJ96vNjV+TEcb/AOY1z/ca1mwQWLlAJHEFEp5v6Emj6xThDyZEu6kdKtdW9GfFt6va5/0of3Pct2NfLitmEmYsdAUtlwpOQpasjHjEY5cuvqpTul3N/aO2n5FvR7VL/srzufbS1eTf4zy5CEILJV0D3RKI4nG8Orhy66Gbxp9w4rOoLku0eRcbTdI8iQx7810klr3vvlhak+9seDwV4XlxVTMzWoclxiay8zIYG4pLrRR4Xpq0nNMKLbfe11uDJbSE7jrwUFY5ZVulRI6jzHVUcvdpdjHvm7WJDpbR0aX3VpfUpPZv8SfSa8yDR6S2IbN1LDjoAE2G2rsU4M1BtonQ/sqvQjvdM1v+Cvt95RVstXW0x/goEBnzMNp+yqf18kR9U31jf6QpkOeFvEg+ADwJ6uPDyVdpEutkesn3UfprplONn9qa+TaWU/1Ir879EPYWo55R2h7DX6J6dGNJQU9luaH9UK/ODRi+Lo6wy0PrU7XrNDA+FL87++jD8i6TlOzFMR4iktTUNgOc0+972fZXBvVz+TB/SptF+AvGf8/a/Umk5YOGeFeIlHOMen8H0PVPGc/3I4dvF2V4qoyPyW8/Saj1/nXBDbbqHlKcK8npGz+jg0SKjQrVpPezPHrR9arKYpSWxNqZydb3Zzqj3uLcmOyWn2LA+2p9fpW8hbI/zRv6BUb2lxI0e1qeYZ3VyFtrcX8s7w+jjT+7veC44DnEZv6BWWNWwhJf3gVVS6Z2Rb/u4wuUjd6cdK4N13dHvyj9tBbm42MHvg8+wmurhLQAoc8nNCZLvSH01ZXBE1tjfmKMuEv4Jzim7KgLvvHlXLCj05pB9ZTJ3hzquKwedfLumztimtNJ2LY/pO13XUlqhzVW8OCM5JAdwSrju1N4u0DSRACJSpPlZYKx6xWMdpn+J+z7/wCX1frBULZW8z8C+61/JrKPq4rYxbWURykk8M2JtdGz7WDlvcudmuqpyVCExOdUppMVtfhlQSFbq18Du74Kd7GRivtDaY2Tx4vekzZvb7pMg4ZVLkbqzJ60uL5p3ykp3gAAFZxwxWadFahvUO5qDN2mLQpgp3Xl9MkHgQQF5HMCpdCF91Xd0QW71Okzn87jCZJaCsAk8AQnkKGTlFj6oxn9DUNtZ2fWpe9A0BpK19pLDQ9fgiiyNoOhrOghy46Oth6w2ptH0Vjw2aP/ANodO9/KeH9au4lvt0jSc24273h9p3o2muiVvufOSpPDh10KtY/8KjR+1TanpnUWjJ9htmubelcpIQsQt9SlN5ypOWwVDI4ZGDjNVNs8Ng0/qyPd/dKbPYj5IjsWF9riUFAKVubqRwJHAcuHZUG00qU5dbq/bEKmvJZYJaYOQM8OJ6qtT9j6l26K7OYjW2QhkJkhyWFIW4OawerPZk4oLpSccJBafTxzlsKXbadboEy43SPpe/OodCV+G7GQlISMfhSePmo3s11cNb6bTcVQBb3EOIbWnp+kSsqQleU+CMDjjjk8Oqqsu6orNvvbdx1LZG40sBEZpQLimin5Kk881K+58jri7NUPqW2tt+UgIKScgtt7qknhwII6s+evM1lEFR1dOGWVt9p0kl15uq1RoINcN29u/wDCu1MNEOYu986XjkNfQKgGsHydVaJCeq9On/wr1TbQat+63kq4/B/VTUeh+fV+v3HamP8Ax7P0+xYWnMe7rWPkr+yhkrHRuZH/AGW9n/7oUQ0rn3cZz8lf2UCvM5ESS0wvpd6TbpbaN1OU5EnPhdnAHFfUPHTk+fS3ILtAjMp1lqSdNhtPtrfdYTFR4Em4N97JU4hlYUCkowlalgbwSk7pBFDdER++NRaeuMaO+xC75iNtRulcWuIjdbUlMje4KWVeGlxfhqQoZ8so147Yous0Py5DHu8xcZfeMfh0khpUZklsY4nw0o8GkdON25U+53lL6HL1In2tMqGHFHvVIcaUQpGRukrWtB4A+9gY4YpHUMwHtpiy1o+a6l95hadRICHGlqSpJUQnII458Ly8+R5Vnfbm49+0cCfNnOz0yHHZDTsoSmkpAQlt/pPwriCMgeDhPADjWmrs5GkNBBfw2vUSW1rS5hbe82BvA+TtrNG3W0saesmlbOHnZUluRcXO+VuhZdT056VROACpSlNKPDt7KWmFFlZX19x2E+l9YcQQRujgnmeY66uJ47932a/Nsc4/qBVK3Q70Mjtq7XkBN92dp/8A27LV6+gpmMQYaeZImwGUg0WtbqkpAFConhNJz2UWtqBUcR0g9FDvA71Vh3VS9zRFkSfj3bH9Q4fsqzIzp4VVfdQty7pYtNWyIkdI/ed1Hn73dquppIQ1uUVY4Ui8XqJaIQHTyVlKVKOEpwCSSfMPXVmRNkly71z+yGF/9qr+2lNBaAa09qBu7Kuj0t1tpbYSWghPhY48CeIxUv1FqJuxMRluRpMhLzvR4aUBu8Cc8efKp7dXJSxW9h9dGV3iCSNlWom/3Pcbc/5ypB+2nKNC6wjRkpDTC8fg5KftA+mpvb9W2OQkFdxZYV1oke9rHoPOpBDmMPpC40lDiT1oWD9FAtTY+RipiilZmnNYoScWOYT5Q2r6DUTuVq1RFWens9xSOv3kr+jNaadeV1kmh0yRXPUyXkBLTp+ZmNN0IT8M36qNWi/ltpIJbPDrVirssMWAIRfat8VtyQ4p11QZTlRJ6zjjRqOzCCfCisf7pP8AZW/ifUF0yTWGUM9fErTxcZH9Omi7wjPwrf59aEdh2tzx7dEV52Ef2U2cs9gXwcstuUDzzHR/ZWLUR9A+yn6lDtXMkjGD5lU/buJ3f+tXIdNaUc8bTNrPmjgfRXqtH6NWOOnYafyQRRdvH0NUZcZKFuM5CnCFDnTTIUM1OtsGh7TYrUb9ZlSGWQ4205Hcc30jeON4E8eZHDPX5KreM+pSOY5dRpsZKaygZNxeGcXsD3Mk8PvTn1FVu+ztpFnhpIHCO39QVgm8OE22QCfvS/qmt920AW6OOxlH1RRpCbXk8U02TXnQt9lLlTeeNebzVdgWYR7pN3G0tfkgsj2uV1sauioFruymn+i6SQjl5ECmfdKqP90p7+Zs/wDPTPZcktWeZvNdL90AfoChtSenQ+uTWoZPZmqcfume/wD72krTrG3yO/bdJOWJcV5v9H5VBZT24eDCR6KHtNSpLrrFt6Pvl8FLfS8s4qGNaLnNoJCNY2vFjoWfKSqq1viwu83ZXUXHj7DU8t2kdZz2+kcuzMdvtbYyB6Tiq6uKiqTOV1qW99Jq7TRSk8PJBq5NxWVg/Va1+9aeio7ITafU2K/NfRKsyJg+Y3j9Kv0oR4NqZA6o+P0K/NDQq/uiQe1hs/TR635LD+GSxav75MOxz7zeP5+1+pNfPSE9CF9aOFNY7x6K5jPjS2lf1ZFIlXgkZ4V43Rl/t/B7isxFfr/J0ZAOfLQfUbpcjDPxSjH51O3F4OBQu+KPeyvOj61W1R7yJr5flsmG0s72nmMdRR9YU2nySY0vPHDQ+gUrrnKtPJz1FH1hQycs97S/5IfQKXVHuJfV/YbqJNWSf0X3AUh7epAqrlas1yTxr0UjxmzuP466Qc4yEUvH8Zym6z90oo0Iu8BO9pqMaP2fOdun1D1OD+2oOip5tO/xI2ef6iX+sTUCQadX4SayPeD+iWEStQNxnJHe/TILaFdGV+GrASMDz+apwy/YbPd0yWbZOuEpv3sFxaWwVDnjGTj0VENCoKL3bJIXuKE3CVbucKS2pYOOviBwovKlzUBnDhwpvJ40i5blVEelEobv0tfwGlITP8qVOfTu07h37UrY72jy4MFJ+9R2mk49B3jTfQOlRq60S5TFzVEkNvBhvvge9b5RvgqPDCTxTnqUOVCbe2W9RxEHiUofSryKAwR6COfLsqeTwWRecBq2SpT0WG5c50pPSx0LJb8bJSk8k7o6+yjVvgRHun7ygXCb3u0XndxAO4gDJUeCuAHGgMQj3Kth6+9UfVTSeibtdYl5vUaM6uO+90D6nOmKUJQy5vlBA4+GlRR1jnkEcKBS6hz7mD7Vb6LgrvVUaO2yhTSt4J+U4lP21bGxiOw3snhd7k7ibpNJ8/TuJ+jFUxqiShLj7yEIQhbaFJSnxUjpEqAHk4VaeyG922HslYRLkMsr91JY6JSsFeXlnlzqfWxk9OseptDXb7+gW1f/AI5aIxy903D/AOGeqdbOuNyvGflN/VFVzfZzszUmjpEKHOeZjXFa3n+9XOiQDHcT42MddWNs5/fK8flo+qKh0kXHUVZ+v3KtW1+Hs/T7Fi6ZA922fyVULuSEKXlSUkotlxKSeo98pGR6CfXRXTP79s+ZX0VHtXo6S0zE/wDdFxPqlINfSy8J8ypYkAdcxNPPa8ZfkoCNTou0j3JdC91xG7DbJVjrSFqbGcHAVjlmhumbHZI2o73fXXA/q12VafdNIeyBvOspW4B2FxpYHkRwweNV3rK9zW9auxvdBKpaXTJYkPLbT3pmOEqdIABKDlKSM4BKTgnjXemtTXFiBJlulqdcWxGcemKVlEhDQS4N1W8T4yE7y8EEpJyDwpIxMvTVMbvyJOidK6z0+oUN9K34yN5CBvDzZrMW2uzs6csenbALqm8OIk3F5M0qJXuodSgtnwj4IUs4weHGrMG2KRcIB74sz/Tu3VuR706n3vdCE+Njxuzy1T20icy7b7LbYsl+YzGExQlO499Sp3eQAd4kqTvFKjwyQDw4gbgJECuaz3oasHV2ubfBl6YZ6C4wbnZ7MYzqJEdJbWl1LakuIUlRykhIweHWMZFV1d/3As+Q0U2ys9FqqJn75YLYv1tGmKGdmC7Mbkkj7TJawC3f3WfIlsfaDRBza1dYIAVfWH/IqOlX0YqmmU5NG9P6P1Hqmb3pYLQ9NUkAuOeKy3niN5Z8Eebn5Kx0QjuzldOWyLj0Ntlvd41FFthZgLYKvfVlKkKKfm4zxqV7SX/dHU+j0g8GZbz5GexhQz7ag2ntlr+gpUS96gnMPvvOdG3HikgNcCTlZzvch1CrJi3GxvlH3CvfQPBW7urx5usVDddFbQLKq5cyG0mUmEnpFjINBdfSGXrEh1o5CFoX6cGjF7Uy+1hAGOrhUGv8pTUJ2E6fjpUPNxqSCyy1rYjiLilYCXUBQPUoZo3D73jpBjyOr4PH/NzqJAceAoxBWQAcdVVuKADPuxcoTDi2J7wGfES8oY9CuBoRP1rdn8MOzFjHyCUK9YOK9nL32TnnUKnZN1ZAPNyjjBMyUmiX+7VxWEb1ylp6P4PDxG56ufpzR+w6uubSt198OJHx3EZJ9IwahkkAY4UtDkbvWR6aS4ph4Lgj6ojOgb+P9m6D9tOBf4B5y2m/5Uj+2qccepu4+AedD2Rxe0a+W9QH7YRifmuUShz48prpI77T7eSN5tYUMjgRkeWs928SHZiW2iQXDgEVdGkQ2hlLaRhIR+lnjS5rpMaOtpFrZvull2x2S7HDjragtAHNK0qHMHsqANbJUyMLj6ifCusGMk/QRVp3hpLsFHI4WKWtbSWkDdqd6idccRYEq1J5ZmbaFYZ2l3JdtuJRIUYheaebThK0HIzjJwcgjGa3JbXCbPHWOfRI+qKyX3T374wkj/Rj/D/aKrWNg42WJn8Cj6gr19PY7KlJkd8emWEOWwV8aVTHJrpte7SqZAFMFH5990mve2mSU/IisD2KP20N0PZ9TTtPKdsbsdllUpaHS8riVYSBinHdCOdJtRug+SlpHqTQGyW7WzrHe9lj39bOSro4jT5Tk8zhIxmuSbqSR3Una2yZDROqXB923yGyOvdST9O7RbTkDTWm7ui43DUKVvpQpKWluJCAT1jmcjy1HImx7aleCHDpm7uZ+NIKEfXXn2VKLX3L+0yZuqdZs8BJ598Tsn1JSaV2LlzIatRGL2j+7CcnaPp9hW6Lwl8j5DS1/VFUq8z37dXlMpw28+pLYHxOkWQnP5wrRli7kW7L3FXXWEBkfGRGiqcPrWrHsqydK9yzoW2OiRdLveLkoFK0oD6WEJUOR97SCfSabTTGrgVffK3kvRtBZsXRqdLqmoqgXD8Yhvn6a/M/RBwqSeyO19tfplcFAWiYU4wI7uMfkGvzM0Vzlfzdmi1XymM+H/Pj/fIItKwZw/Ho/V1ySa8QcKnfy6f1VeZFeZjc9mUtv3/kSW34VMb219yq86PrU+W54VMr059yq86PrU6HKE2vuMkGrXiuyLST1tfXFDJCyWJvlbP2UvqVZNoPnb+sKav/ALikntQfsoYLEf1H3y6pv2/2C3mUpHVTNw4NO3XcjnTJ05NVwz5nk2NeR20rgaQcP3SilW+VJL/dKKogsk9vhJ5tOWf7n+zxfX7jPJ9TiagaDwqwNqjYRs22eK7La4n1lJqum18MUVfhFWeIl+gl9JqG1R88O/kqx50FP20am8I7WeoY/RFRLSy1ovsNxvpfAkNK973t7AWM43ePLNTeLGkXGN3xGj+8b6h0rrqUI6vlUq3kqoXWhlop9xlVwaXLdRG6LeS0D4G/nwTjtBOc+SjrKOhu9tc7Wnfory3acbaK1v3GOhDmCpLDZdUceXISKd3SDbYr8dyI7NflpSQhLqwDu9eEJGT66mmslUIdnyItPsJtduyo5EZGfzU0Qslpukq4vTbdbpTiHmg2oqZKU8M8d44GPT1Unp2FfIKWJ/RN25RhoT08xxtpOD81zwgfMk0UuEhhw5u+onZqhzajoUtPoce3U+oUEYYWRkrOppEY1vb5UGOVS3IGSQncbkpcUMEHiE8B66u7uZEWxnZyHE8Fm5SfGKCrHSHGMcfFxw6+fZVL6lj3G8xu8rDpy4XFxZz0yQ47j0pCWx6c1Nu5wuGqv2PP2+zRrWwwz73Kdkxle9yN7wt7wh4e71YGBzodRCVlXQpY9hVc12uyLu1DJ74ivsW6N0z/AOLapDZjb7lGvF5buEV2MvDKwlwcFAjgQeR5ecddNBatQSRi56mnvJPNmJiM36FJ8L20tpq3phXB1ptDiU8OLjynFK58SpRJJqbT6aNVkZuTbXqUWylKuUPUnU9qa+jFvu6bXIJGZAQhZABHJKhjq680pKsTUmCmOjU7A+5n2F9MwklQeWFrOUlPWOH20zt0F2Y6E728D1L5eynLlvdbUEFRI3HDg+Lw9ter1ZPGdW5FdRbJReELCJ0ZxBlofbDMkpCUhKEqSUrSve4JJHhDGQPLQE7JnLZYrtHj2BUu4OvBNvmLaZK47ZUgqHvagd0neJQAMgcialssGNL5UqzPuCVDoLlIx+DcWfZXZDVeEU5dNnWoGQzDntNdEJu47KS07HXukDdUneRjd3jxOeG6TUF2qWL3Gdt0HvwOMN9NhvpEK5obVvKUnxlHrrV/u3eGFe/LKmxhHHy1RfdWPTLhI0wp2I6SETPg2vK2PiitMM5T1FbS2zywaV15fV6juEScuMmOY9riwQEqUd4M7yAriBxIweGQO2l34hRHU6ph950pO40N7Kh5cdVSXuirbAtuqbQm2Ru94z9ghvbqUBCSsrdBOByOEpzTExDRCrdES5bHnyOKWkq9daH2Nr702aWdMYbgUHVq8qi4ok1ni1l9VufbQ8hILDfAitB7Jv8AJtZfyHPrmp9Y+4h+lXfPdo09/o2JDig4lt5KUpXxT4QIJx29lCX3ZkZsLcUyGuroySr6KJ6/ssm/QEW2JITHLi95TxTvbmBwOMjPHA59dcxYT9s3ROUHUN8FvNN7wPn+T9FeU2sHqxY2j3QOoSBvHzioztAACY7/AF75TnzirAAFx4W/D3noLf8AQN81A+w5cJqIrbOd1tlBXnPaTjlRVvvJht5RWEV4FQHOjUVwBI4UXkbML6yo97z4hA6nGlJJ9IzTZejdVROPuf3yB1x3Qv2HFWdUX5gAq6OlLfgnnUaQjpb7ET8/ePo40auSZMd0ty4z8dfyHmyk+o0EaejsXcyVv7m4yeFamtwWuAlNkFJIFIxXCo5NDO+yoo3nk+H4vLwvNT5jIAolHCN6ssXkyMcM0X0Rpp/Vt0dZElUSFFwZMkDJSSMhKfnY4+TnUelVeegoKLJoeFFDu5IeBkSD0YJUpfEg+YYFBdYq4/U5SyEIlv0rp797tPQem/zmS10z35yqbWy8SJWqcPL6Rp7De6RgDswBgCh9wmKcWd4oP9KmVqkIReGm1Y3nVDd84/6Zrz+py5CLDcZSHTHCRhRyKdMshtIAp5Z7Rby0JMm6x3ZboG8gKwlsdSR9pog7DQlWEus48nGkyqbWWd1LJm/umv3+iDq9zHfrmtB6w1orRGiIl5VaHblFaUwzJLb6UKZCwEpXg+MN4gEDiM55ZrPPdTPJc1RbktFOE2x1Kt3tU4APpq4NuIKtidyPROuhHeji9z4qUuoUpR8gANevpliiKI78OwSt/dC6WkudG7Ckxj8/ex693FHLZtj0xc3OjgSIb6/kpnN59RrJLjbrcNM1yDOREWneTIVFUGlDtC8bpHpoU+uI+rLLTb7Xx3Mp8H20WH6/wEuz/wCv8n6Fp0rptqQqSzZoKX1c3egSVHHLiRnlgUSZistABDaUj5o3fopQc6WAqnpR5qbOEppdArxKaWSBitSDPhyr4V9XwpuDDi5H9p5v83c+oa/MzSi+jU5xxvR2vtr9Mbkf2onfyDn1TX5h2EnfP83apN6zBofopdNyYZUrDkvjzfR+rFJlXHBpBCy9IlN5aHho4qcx8UU4EQHm84v+SaKvacCvOeE9z1lmXCG0lwpNMbo7vxyM81J+mj5taFp3vB/2izn1CmcuClCSPA4cfBQB9OaZCyIE654Or5IDloKc/g/ppF9zMVYzzGKa3VZ7wUOPNHZ21y457weNHGGwE7G28+gipk7opFbaqcqfG6PNTZx8HNOjkml0o8BbSPCUc01eWN8FGTShUlRwE5NfCLPcPvLQ8lNTwIvzJYSJvtQfWvQmgGSeCbQpXp3kiq+TmpZrRbk5FmYbKlNwbWzE3erKc5Ppz7KBJgr4VsJJCpQk3nAV0Gtz9k1tQ23JcUJKFFMZakObuQFYUningonI6qn7lvRBkuMyrpvuqUo9HFZyoZKsZWrdSOXlqtrCh9q+xkNtrccePQIQhWCtSzgJ5gceXEgdtSP3O1T32/brfbn4XROrb+C3PDT+VQ2ND9M5R4TfsTJp5mKN5qJn58yUpf6KN1PtriRqxltsx/dN1rtbgtdH7UAE+lRoXZ9nd1mqS7eJS1ucyGh0q/bwFWxpfZbZEQ0Lfs8p44498q8I+ZIqOzUJbLc9CFM8Zkse5UqL8t98i1Whbz6ubruSs+fHH1mproqJqdEqPJcssRYUrJcfbSVJ83XVoMQIlsPeyLT3v5Vt0RZjh0biRkdiEVNPUOSwojoVqLy2EbTebz3p3vIkQmWPzKjuxfTydM2ifDNzVKL8kv7iz8HvZ4dpJ61HJPXTqXb+B+6CzRXS0VtJUCFOZxxBrK5vgKSS7wSlSXEzWWQfBKqIw2wLo94XxabTExEvsKwc71GokOOHnpO/w3RTYReRFk10hG0sfdPPhRXo8r7eBHrqNDUVvt3HjM/kqaXa1v7StKWiOLi9brROcW7d0Q1lK3EIJHeu+OKRv8FY4ndI5Hh6EV1HnTeCMav2laWZuxtunmrlqu8oIQqLZ2OlS2oHjvuE7iezjTSDN203s/tdomx6WZJ4O3iaqS4B29G3uj21bGndO2bTVvRbrHbYsCK2kJDbLe7nGefbzp6a1xEOzJUCtB7ZLg4o3Ta6zEZXzYttnabx5ApWTSWpNkNyZs5mzdqOsLhK4ZaMpLLavIAhIwauBTmOR41E9WyPdC098RvfxWM6LyZcs+mfdi9Ihi+3FrfWUqkOzFHdx1kjiB665mWa4SQ8xp60bTroWXej75kyUrjL+c3vHO6erj5+NTPvj++2bIkR+gf6XpHfif0vSr21We0W86i0prOaLBqS8Q4ktQlRUtSVFpDa/iBKspGFBXAADGKVCTbwg7EopNjC/wAC+WNPTXpvUVoz45mQA43j5xAOB6aOwJWvLNGTHtt4iqZQneS30KQkBWFZAxyOQfLkGgemdb651Dem7bcdWXJ+AQVy0KDWFoHxfE6yQPMTUtekKScPsl4feHDzSfL5KGxtbSSYyqKnvEHt7QNZwVZuNiizUDmpk7pPootB2wWUgJuMWVb19aXkHdT6aTLiuTrTS89aeO7TSTZ4s/i53v5nRvb1IcapeKOPYqTmuGWHa9RQ5UJL9qWl1hziSwhJ4+UiiCbzIxkZFQXR2zhQuSL1pO7TtPXNn4NcMggK7ShXBxHaDx844VIZ7t/sLjLW0G1Bph9e4jUtpZK4pUTlPfTI4t8eBKe2uWnTXcYC1OHiSJJGvboTxcbHnFOUXhhZw6lKyfkiozfoz1pfYTc5ERLEhoPRH4uFtSGzyW2ocFD28RnGaQYuTQRiFHZUfwshwZ9CU8vXSJQw8MojJSWUSS62+23od7yY7IH4yhkPZ7oe3jhbmHj+M98+tQ+0yY/fc37p6Z/wKcPyZO94K0pHlodzWgk/pbTMhstiBAQg/FDKcewUFd2UaYUSYkbvYH4rDikJ9Q4U5RMeSOe95sU+jXNxIBUlYrep+oPSQy/bHEqaKodwkN9gVhQqRXOeIkTowMBtIQKNfsgIGDn01G5dlZuMlb8q5Pbijno0jdx6aXNuXJqWCKzLmCTmhOkbwzP2hQIzag70aXnE+htVT5zRemXfhIry89shR+2hzehLHYNQw7rCBYDaFIPH5SDTIShGLTMnGTxgkEsimrE2ZFuURxuW8AHUjd3uGCd0+wmlJavKKYOn31jt6ZH1hQN7BNEW2xiwObSIjeqETVW1NrX0jkUqC0LUvKVYT1DdPPhxo9r7abo/U2lV6bcdkKgSm2i64jebcBQpKgBlJA4p45BzmortjZbm6wu+/klq2x0DHPdW+oKHmNVCWpjsVLjTC1glXEHsNeppMSqSPP1U3CZpvZbtN0rpDRSbC0xNlQ4CVrHTuNrW7vqKgngAOG9jl1Uaul62PaslIZu+nYaXnmwoLMFOUZ7VJ41keHI+45ufwVEolwk+6zH3R/BUUcqFnImF0j9J2kginKWxim7WQKcBVNAwe4xX2a8zmvaYafV8OdfV8OdcYN7of2onfyDn1TX5jWLxz/Nmvtr9L9UXG22uyzF3O5QYIW0tKe+JKGyolJwAFEEk1+Y0J4tBJB4lpCfUKVa04sdpdrUSWC+y2twqQ0SSOY48qdrns7uAMfkmou3LWVFKWHVk9gp41CuskZZh8PnHFefKuOctnrwuljEVkJd/OKWQlBI8pphcpIHFaimiMTS1wfAMqSGk/JRzp/H0ZEByGXXVdqjS+uqHmN7O+a4ITcpaFspDalrPzRXTMea82no4/D59T93SMotIEeKjn8UUcgaEmuNIL4LfDrpj1UIrYBaObe7KsRaJLnwkhDXkSM07ascXI6TpHD5OVW/C2ex8jpnHXfMMVIbfoS1NgZjD+maXLVmx0cFyUam2tsJBSwlA6sCu0RXHOCIrzo8gq7pGhoUQAsyImPkvuAL9fKnNt07CzhakpPYgDP51Y9TsP/DxXBUSNOXOT0Rat+6Cnms4oxC2eXV9vpXnYkRvrUUb49YxVyIt9tispKGEqUPjK8I+3hS273wMISHRSHrJZNVEPMrGLs4sKpjBuV2lSlsjimINwfnJ/tqeuM2/pN9q3JUetTyyM+cJx9NKyUW9CffHUIV2NZV6xyru3yLMg+/KKz1F0jc9Q4UErZy8xyrjFZgtw9ZrxFa95Tb+98/5ukKFGDcoUQdKoujP4sqPqqPx3WFHDD7fkDOE19MW22Mvyg15XFkUcJtImlplJ7j+dqdJymJFSpXa6N79AfbQ1q9T1Ky6+gJ+T0eAPQMCnNtt0u5AGHbnpbf4Z0GO0P6R8JXoFSO0aXaYQEzJXRp624Xgn0uK8JVNjCc2BOyilY8yNSEvyVo76T3oFeKoqJK/MgZUfVUy03FMS2ErbKQeSn0dGT5k+N9FP40WPDkJSxHYYSRxdT4/rPEeg17JU2FqSC46D8dbwJ9XX66dXUovLIbdR2i6UgbKfQpYDbCllPM44U3kNJmHdVJKPmpVinSbnOSpUeQwx3v8UgccUm05GlOmOXIzQ7eunbMTuj5FvajxOjUSpztJzVUWzX1+2N7Rbnb58J+5aYushcxtgL3VI6RWVOMFRCSQoneQSO3IJ424ppiOcMmRII6kcqSulhtV9tyrXeYiJcV7j0LwwUHtQrmFUcZdL2Bkk1uSzROttP64tnf+nLgxLQMdK0fAfYJ+K42rCkn0ceqjB51h282J2DtVnaV00JYnx5piQMPFt9wdCHd3fTu44E9YBwM86l1u2zbVNEykW/ULgmNp8ERbxGLbxHYlxIST5/CqjryRSqedjUk5KmJSHXGSuOfGX+D8tR3WsVCHWFp/e2TvB7+UwSB/SUAKrvT/AHSunJraY+pNOToJPjLjKTJZ9Rwv2VLJW1LZfqa2OWlvUMZkvslSUyMsupUOsJWAc+byVuzRyUk+Cv7zaX7Vfm5U2O0hLqSFhLocbcZPjJJByAfKBjtqjdosJ+5aolzEJw0VdGx5Gk+Kn0ZPpJq8LvOlTbajpnUSF+EnpGnkrK2z2Y6jw8owagL0FuQvoSl8ODON5FRufQ8otVfXHDKvs8Fy2XRl9IOSfDqxI6itW4rJDg8GmxtbZcW4oAhPOilvjB1CMc/iUu2zr3HVVdCwNm4Kx024+UbvyjmpFpWzW56c2youl7G+rccwN48seWvo3e27hKS26Oaqe97x5HQSLd0HfrLvSOtOO7i/ym/tR6R2ViWTWWnpiLL02GVyg7NjuJ96lBAzun4pHaKsEQo0yA7HlR2n2H0FDjbiApKweYINQ7RFw90dPf3wx+8mfvrsn3lH5Sd7FBtV7cdA6QjOw2r6L9IQcIiWdPSJT5Fvk7qB24O9V1UUlsQTbzud3bSDOmNlGq7c8OktltmqlWHf4rZStCCWQTzAcUtIHYoDqqq4j1vXzbSfRVe7YdtGpddW/wBzQmPa7Mhzfbt8XeKd7qU44cFwjq4AZ7eGK1g6k1DA/c10loHZ0xWPUsGgt0/aPKDqv7NYfBpt2DFfYBbaTihMiDOjrKoUyQD8h1O8n0HmKpWLtI1C2QDIYeI/CMYPrQU/RRyBtanIUEyob+72svpX7FpH01M9JYipautlli4XVs4kxEEdrJyfbTtzUUXoEtvZjkdbiCn28qhUDajbJJCXpqI5PVIZU3+kMpqSRNRQZ6MsPRpiT1sPJX9ualnXNPdFMJxktmSGHIjyP4QzThT9tbGFuvSiPiMN5xUYWi1OL6R1pLC/lFCkH11wqFbXDlF2LfmlKH20thYzwSGZcFIT7wwzBB5FaukdPmSOVCLsnDKFuOOuOuONjLquHM54DyU0FtaHFV8eKOrD4V9NeM2y3ty2Jip8p0oVw6R0qT6hRJrzMww4XWyc4yr5fxaaqVvTowHW+g+2u3A1g+/LV53Ar6KQiqBukUZGN8H21j4N8yMbRSj9ld4c3VbxjxklR8UjvkkDzjB9YqrrlAjN4QjPSZUs+upkY0m7691NDaPhyZDTTfmQ4CfpNJ6h2b6ojnvjEf8A2bu/V2lagsN+hFqYSszKMSJxenNnnOInSwSEp4jNd97uuXdSHFxXcR08Xm8mlJNo1TDivMKtrSwogno3KY9/zY8l5+XBcbUAEcTmrU88Mha6cJpn6XAcaUCBWWdT90LrOVFeXZ41qsyE/HS2ZD35y8D9GgGsNQ7QdSXaciXeLu6z4G4A/wBC1xSk/E3R1+WpZa2CWVuX1/Dbm++0jVt+1VpewNhd51DaoIPIOykBR8wzmoDftvuhoDimrY3dL0tPMx4xaQP6Tu7n0ZrOcXSzqV9Ip5iOs8ynLi/XwFEWdMMKIU45Ikn5y90eoUiXxDPhWC6HwuuPjk2TbUndGaoklTNjstqtiDwC3yZD3qBQAfzqBam13tOvcstv6gucaOW0q3Y25Eb4pSeaQlXX1k13Fse6kdBGZZ/JTx9dO39PMzGguWsreRwQs80+Q+SpXqLJcstjp9PXjpiiCotTTs9uVc5qn1pUFKAJeWvjkhSiRnPLnUdf03ZRdZTkOGpltby1IC3N7dSVEpSAMAAA49FXFG0gwuNvktZpu3pa3tPK345UrtUreT6qW7Z45GyjTPHUslc261JiqSIUUrUeaQnfJ9XKpM3Z3SwFuRlME80BAKvUONTOJb+jG620EgeSnK2m2k5ccSPIKmdrfIxSSWIrCK8Q22hRG6r0pxSqEpTyGKlF39ypDYR7448PjMI3cecmlbRbbPupKvfHOsOL41gfa4RGG4bsg4bbUo+QVJrNEuzDYCwwhvq6bwlegDjUkQlllAQyhIHkFKDiKKIiVjlskDpi5ba/uZhpTfylK4+rhQ11UxRw5LWPIOH0UakTIzJx0yXFfJb4+3l7aEy7gHH0vtxWg4jkXfD9fLPpom0bDPofMwXnzlCnFntT/bTluCWfhFpB+acq/spKJfEuHdlNFH8lwHqp6VxZAHROg+TkaV1MJprlHMoI6ABgKbcx4xO9n0eLQSXHuHPvnpvxfifo8qKOTI3SJjNqckOKPgtx09IpXmA50Vgaav8AOAU/HYs7R5mWrecP9AfbimRhKXCFTnCCzJ4IXHiSXnilmK6t3r4ZAo3ZdLTri/hxa145tRvCX/YPTU2t9ltkBQ3kS7u8Pivn3tPmSOHrou1cEKHRvHvBCeSWxjHoqmvSr/JkN2vlxWgBaNGRLe90j5YgE9Qw9IV6eSaL2qxWln7qgWtLzn+dy/DJ83UKeAxXCkMB7ODvK38b2eumbk1hiOEW99/p20bhbxvVaq4QIZaiyfLHra3pLq1rfQ4pHjbrilgecZwK8uK4j7Ybbl95rHxR8egffVydfUhh97dWSlQ3EqyfKoDGB28qWU1K5qbQPLv1nXthCujfLHrDW68REdLxPjg/Fp67ELzraH3QlBHJHA02XNTAhtJaZUp5fNaEbya8cmz0t76WkOH5ITg+0Y9tFlI7DY9cXa23UpcUyCjhvOHJpOWqOpsiHHfLaubrWE0PaU1LkYnRGVlQwklOMemmr9puCOkjIfabQs5RukkClub8glBebCbhAikR0PNuYwDnKuHoxXVsLjzBU+X1r5gnxuHl4UHgNTYctSQ4pKcYGFHn5yMURy242pb0ySBnkFHl18RwrIz8wpR8jPN7d7w7q0zN1TfR35g7quY347acHy+FWlLkI10VIi3qLAuTCxhTa2wtJ9BrKOvn0M90HLkJcUtCb/BIUpRyR9z8c1puVJwciOGKq6nhMR07tEJ1Bsm2fT5D7UeBJsqhy73fUlA/2ZymoTdthD6HFJs2qm3GjyanxCnP9NKt39GrkdQzPcDr+44EceFdPTrdHbDyOkaKOHCl9rINRMm3rSF4sOrG9LtNMqvEndLTMR3g7vAqGCQkcknnjlXarVtLs4LptWpoYHMtJW4PTuFVWdtgUr+6VEvqAph7oWnYUk44PIB3klQ+UDyqfMXti6MJvCGCp90IKh0x4Kx4QCftre1foaql6mXZN61p0vSPybrv/KciKz6yim37N9Sbm/7rqKfldC3j6layMheT9zNcefhDj5+30VmW0R4MjbazFkRme9zOdyzu+B4rnloq7FPOVwBZW4Yw+Rg1rTWktzfhzpbyt3ocR4SHBj5OA2RmnI1NtUlJ6MTtSpHagqjn1pSk1dct2321W5FtqYqR1dGUpV6UH6a4Mpq4hKkSOhSgeEnoyR6zQ/jMbKI6Gn9WZ71I7fkvto1KZjzrg8EzX1SFejeUrHsqUaZ0Y5c7PFu06epaJTQWhpIwUjz0224usq1bEaYWFoTGbXvDkcqX/ZU30TDkOaGsSmd5s95p8JR4Gm3WyjWmvMCuqLtcXvgj920zHQD0kVkjqxwqMytLMuk9CXWvIkbwq1JkOYrg82y4Pm8aYd7MtHw0OtnycKmhqJLzHz08X5FUytIyUpJZlNKI+KoFB9vOgk2zXWOSXIrhA5LTx+ir0fYiKY8JcccOaz4VAn4bYcPQSAST1DB9vCqYax+ZLZo15FLqMlo4Xvp/LTXgeOQVNtqPbyNXFOsraWAH3G19Jxw4kfSKBXPS0EjLjAT5W8j6KatVCXKFPSzjwyJQdVXyEsKi3Wezjq6YrT6lZo5E2l6hRgSHYUwfj4+CfSkim8nSLZ4x3yk9iqFytM3BrJShLo8lF+RPlA4vhwye23aswCO+7AhHzor+D6iKPRdomnZY3XZcmID8WQxlPrSCPWapKVAlRj7/ABXm/Ogim4UU8nCnz0D0VMuBkdZdHk0bGv8AY3h9z3y2HPUh1IPtNEI06E24w+ZLC0NlTrh3gfASMnlWZN9R5lKvOKI2B2WmcURXlNFxtQVunGU9Yqa7Q4WzH1a3L3Rd2wpt+76xul8jt7m4AloK8cZUpzB9GPbVtTNOycHp5HH+STVd7AYzDGm5ctx4pL0p0DhzCd1I+g1ZYn5GErUv8pxSvpNImiyDwQu8aekbxxI/qqil4tEwJKXmelQPjBocPtq0ZkjJoNc7zbbS09cFuRXJcTcW3FfHBeTgq8yeZ89LU2uAmk+QTGSIxHekCNHV8pEcb35xBNPhbpFwk98ycl2pQzFZSn9ytJp2hbaFZAbFRqPqXylngjMW3RwcHnT9qMyjglPGntwhpQoSWQndPFSQeAPaO2kmVodbSpohQPJQOQaJRSM6mz5LJAzmvRgcCnnzpYJUBxPCvfAHMUTYKQ1fUpCcpJA7KZi6raOOi3vRRKQWui4jJoStKislKRikyY6MRKTcJr5IT72mmJQAsqUStXWTT1+Ol2U2oOlKAPCAp621HSPe0BR7VUlj4bAlpt2RwYZUryp5U8YscheFOupa/I50Rb5+WnKKHqBlJnzUZxtrdEtwq+UoAn28KFXWLNQ4XZLnTsHxTvb256KLuvMsJ3n3kNjynj6qRZeuM/Ldks8iav5e7hA8pP8A1o4yzsAm4vJHuHVT1i2yXm9/CWx89WD6udTPTmj5zTa3L0/Aj9KcqZj+G4PIVdVSO3wIcd3o7dBbLqPvrnhrH9LqqiGkseG9kT2fEao7R3ZA7To2fLIX0C1N9anFdE36zzqQJ0hZ22g1KeXL7WIo3U/nczUjX4Ly0yJT7xSnO4kEpT6cYFMEzmg+jvaGVuk431K3sevhVsaKq1ujzZ666x7PA6gW9m3RxHtlui27fHxgELV5Soca9lIfSrefcAPWtacp9vOvVp74bUqakBPVwFM5jZcZDThKGByP/TkM9WTVTaitkTJuTywiuZbHom+06yD5GzTAyI/PvcPnqoS8lMYDvZLYxwHSLz/69gpJbdyU5MJ4IcXloJRgg/KUQePqzSHYEq/qPJkgZJ73f+D6Po266bjtpbDqDvrPMGvpY+5GR0/JrDrnz/lUOt8aW1cFuCQ+W1HPRbw4+bNc3ualsSCUC/DwxI6A9fR7tN+PeuPhjyrltpttzp3lBpfUEcyPLngfMKaSXyxK6eOknhy+J+V+VRN4BSycvz0xmwy97w4gYdLHh7o+T56dxI/TxOEd94O/hN7fpp7o98cZEf1OUwubSZfwb77OOxVIc8bjlHOwUcmstOITKS3GbWrdSXVAFR7AOv10yu0nh+1/Tv8A4PovErmJ3vGiYkSC9/tKRlXCA3xAkjzJoXLYJRWQlaZD6m0ibup84UFD11y0l4TnO9VOs73Lwk7q/XQeBeGZri0sRH1EfGfGN6iMbvlh9CghaQrmgK5Vmco3G5mba5I722yXqSHNzoLjGe3uzdbYVn2Vq1616kkJUlyx3B1tw76VpYPAVj7beonalqUcx0qP1DdOLavaTLipcgztRhpLe/gX1aRu/kl4GvSVcJxXU8EHXZCT6Vk1U1a9RJyI1guyR8+ORTWbZrg7++VilH8pBH21mR1jaeB+7b+nz35f/wDfpi/B2iOn36ddD+Veln/zaz8NT5TNWou84F9bR9PquNlQy33kwpgqWxvoVvpV5TzH0UB0XqB+JDRHmoehrUjcfCt1PRufL49R5nsJI6qpiTpvWpB6V59f/wDFQr/zDXNhcvWlLwzLubSlQ3wWnQJAc8E/G5nBHA+bI66L8PHG0shdtLPejg0m5qG2BvdbvMVR+Wp1IP0EVnvS7jbm2GNIccQEd9vnfKhjg27xz58U01Zp6RGu3fNvkM95S/fGulk7m4v4yftFAokKZcrgiBb4zsqSvO6htOTw5k9g8prY1qKbMnNyaNO+7NryD7pMbyBhxe94Kx8kcOdMH7jEYl5hrbfjfKU9/wBKoybs81vBaU7O05OitI8ZxSN8J84RvH2VHzY7nIOU9A7/AEgfspCoh/2GO+X/AFJJttlpk6/fUg8G4rKcfJO6okes1P8ASE91nR9jj7yxuw0L8ccE4qlnrDdWXN3oELT8pkjH2GtD6ZhqGi7C04lxK0Q20qDXjAgYNbqWuhJG6XPaSk/M4gXNTm/gJXx8FRSAR6Kfy0pDyJDshpCVp4MuBISv0iuZRuDTqUwYQkbvAEhIPp4133zPfYKJMaJFkM8cLKVA+2oPY9ESm2kJZMpxlbSOj3ve/CFCmbSidHTIZThaeBT8ny0REe4yJgkx5HQdK18F0tJR7jdELbeeiqTF39x1bhyCPyhxHxufCuTaMwhhJZmxyjviKdxI4HdHtIpu+40WQ28hxhtRyVowfpqVqU2GAIK2nlnjgu4HqOa+ejIchjpmEIU5zSpAI9dZ2p3ZkPXHiOpK4r7DnDAO6Ek1H7ih9pYywppIPEpzx9XGrDdsEZLYUYfRpPIoIUn1U1k21lCEhBSnf4cGykDz9VGr0Z2ZBY7XTIy4XEL6gW8+08aYz9OIkhSHIjTq18UkowasR22yYfhLg9KRyJ4n2UmJu+xlyE+0flHAV6j/AGUa1ElwIdSfJUkrRqXt5q3w3RICDz5ZphpjTV8TeQ1KglpKEnKlp4VeMaTH7yQ42d1wLIzu8a5sQXc7w3CllCkPubgwMGtWtsw1g16OvKeRzpIzbJo+3MQbNKuDi1urfTHSCW0lfA4JA44PXXLusGo7Tq5TD9ukA4QJkZbQz5CQEn11Z9nciRBPLbCG2m3EMoAHLAJ9oUk+mikSR3zF9/jehyhTyG3uU1FvlwuQDjV0tigeON0fSM0J1Uv3atXQS4yQpCjuPR3kqUlXLOOfo66t+7aR0jcFFx20RIz549PDBYcz2lScZ9Oai9y2cWltZdizZIzy6UBftThR9dd55NyHVS2MeAlXppFcpZ8VKMeahIfKvEcCq6AmK8RsqqQtH5knGDypKO8W1kMAEH732+UeWvGrfIdwXnAgdgp7HhsMAFKcqHWaLJmBNTqg7jJpcqBTSb7YHhUk2snhSpMbFCpKd3jTCSE54GnZQVcq4MMq4k4FJkx8UD+GeOSfJTmM28ojdQSPLT6OzFa5DfV5ac9MMYCQilHOfohlNSuNF6dLS3Mc93GB5+v6aEvXqXJR0aOjjN/MSd71nJ+ipBknr4UOuFrZeSXYTiWHuamR4q/yfLWuLfB1bT8QEcb6UeA8R7KPae11edPfc9x+7YX4Vpr9Y2n67fpTQyJbpD/4j+VovDtbTOFKSpxY+MeCadTZOrgG2uNkXFlj2m+2fUMFtyJIbQpfioKxgn5p6z5OfkpZ229C8MlspCcpWF+ED9BHpqrXbKG3jJtryoMgnJ3eKFnyp5Hz8D5ae27XV7sjnet6Sl+Mo4Ljp32h/T5o/p8PnV6VOtUtpHjW/D5Q3iS+bcno0cJediOpS4f3QcKHmPnxTnvpohroVMJeXzaKtwDz9tJCXY7m0Hoy09KpOe93eR8w7PZQudFjSEspeQXFtcio8R5u2nTeN0TqK4YTlrUl1JkTVuAKB6BpPLznsphdoztwd6Vq4KTFS4CpBAAT5CfjeY01SpTi0N3FguIKiSGsBSgOWeGPUc0UZWyYqQ0tBj53nAT4A+bnhS89RmOkaS7MBDyZPQj7221STcZLY8QnpHd45eUrC/T4p8nCvJZf6HKFBQ6Q++J8VPnpBpZG90jzSz8XdGMe059lLbWdhiTa3G7kdIuXfaZDsdaDyWrKFU9hyk9/Hv5RbI4Iwc59PVXDUBLbbDEZgKUeXRuHCfPnh7aYuPy49wXGfZSUKTvJJ66zOAklLYMXiYvoS2wyX0KO8SjmAOdfAvORg8hISEDG4fjUEbVJjNb6h74OSWgoIT5sEkeinES4sP8A7p6dgj8z/wBeeu68vcLowthRgPr4z24jn5CFD6Sa6mzorDWFJ3EgYQjd3d4+ccPXXzLT7kjpXPAYTw89IsLZeXMbksKW2FJx0ni0s4YOT7bcVOxktusYT74ptAUvPkpWVZ1dH0seW44grTuoCcKCevrFN4j1qbf6JMEtb6t1JKT4R7Aocz6aeXJbQQEpdfj8Me9p3vprueTeOD6FGjwOm72jv/GpWNJEaKG30LA+WtwlXrOKHqLsKLvx7g46T+H3RTb7oMV8yZDDxPwfyKw4gupYDD9/dU+Gm5Lo8BCzx9HXTVnTM5A6VpaFKT1AbpV5D108vNo6K5KkvTkBIOVoPhOf0TzqQWtxkttCA4HXFDgHTkq9HOmOTwEkiIxNOTjLW26EIUfHQtR/9Cm50kEyl9JJW2rPgpyd3/rU/cmR31LksJL8keM2VDP/AFprGfmO7y5UcMKz4CVkf+hWqbMcEQOZpi6NqV0ad9ocnUcjUdumn5clCkrWlLnyR11aaYL9vHSonKdK+bY8RNDY2l5l9vHQRnMb/Evp5JqiFmNxcqs7FcaJs161Yj9isOEpT8fiHT8GwnqKjyGOIxnj6Ca0JofRlm0LbuhgJ6e5ugGTLI4qPYOweSjFot1r01A9z7RHabWrHTvJThTqgMZJ5k8KcDjxPOtssb4OrqS5HTM6dzZUkHOSSd3J8uOfpofqXR2lNSR96+WeAp9QwX46OjeH9JPGnaEA8eXmpJ5xxtRwQaBBMrd7YiGJCnrHfmnEdUeU3g+YKAIH5tDJ1j1JpaUlcq1yC0BxW0grbI86M8POBVvsS8DwhT1mcQMBw46weIogSlGr7HmAtSEdC6vgHmV5SfJnqPkp5EYjJ3YQkvym0p3gXVdIn0kjifIatC62nTl3yZ9ojqcIx0rQ3Fj0igb+zuzLgrh2+4Ptsr5tyDvH84DNDKKCUmRORKZYaemCU88UcClICfQAedDoDnfqlSocN9GOJQ8Sj0jPOpEdGXa3symmIBkREnmtXSpT+SOdMwtuG2WX2ujSBzSrinzA0nA1MYQlPpkCF0cdQQc9EWik48povJdYbKYkncbKxlCG18R6aYvzVspWiYh2Qs8lJSQsDy5oW625JKlF5JQR72pXhLR6KDs8hdY+ntuRFCUqYhcU8NxSN7HpFdh6I+13zBQ0pHa4d0A0JYZDbW7Jnma2DlKUpwB6KdTLhAYgKCoyXEKGEoS31+Wt7M7rFlNXPoy9a7ipe9zaUoFI8xHKm0Z15pRYuDChv/hAFJz27w40hbWove7q4cZ2Kp0ZdCXN3eoZJW29vNMynYa08FJUsHI7aJR8jG/MdupayfeFMHOd/Pg0U2axPdPVvHiIaFPZxu8T4I4+moNIavbCOmU90jH8rv1Z2yF0oYu0gw19IS2wk9qE5OfTkVqjgGUskyiFCYbz7hXuOy3VAAZG6nCR9FKJfccb96cdCerwOFCICiu1RR0pbCmArHRqPjZV1eenkKZ0SQluaytvkpKkkYNEAJTpBaPhvKKvIOFIIuTuMPLQUdWOdEbgkuN+C6wQRyxUefjBKyUoJPkpYzB//9k=" alt="Casa Raíces San Juan / Living room">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-leaf">🌿</span>
+      <div class="hero-title">Casa Raíces<br>San Juan</div>
+      <div class="hero-tagline"><span class="es">Bienvenido a tu hogar en el Viejo San Juan</span><span class="en" hidden>Welcome to your home in Old San Juan</span></div>
+    </div>
+  </div>
+
+  <div class="home-body">
+
+    <!-- WIFI -->
+    <div class="wifi-card">
+      <div class="wifi-label">📶 <span class="es">Red WiFi</span><span class="en" hidden>WiFi Network</span></div>
+      <div class="wifi-row">
+        <div class="wifi-info">
+          <div class="wifi-net">CasaRaices_SJU</div>
+          <div class="wifi-pass">Raices2025</div>
+        </div>
+        <button class="copy-btn" onclick="copyWifi()">
+          <span class="es">Copiar</span><span class="en" hidden>Copy</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="section-label">
+      🗺️ <span class="es">Explorar</span><span class="en" hidden>Explore</span>
+    </div>
+
+    <div class="quick-grid">
+      <div class="quick-btn" onclick="goTo('checkin')">
+        <span class="qb-icon">🔑</span>
+        <div class="qb-label"><span class="es">Llegada</span><span class="en" hidden>Check-in</span></div>
+        <div class="qb-sub"><span class="es">Entrada</span><span class="en" hidden>Arrival</span></div>
+      </div>
+      <div class="quick-btn" onclick="goTo('checkout')">
+        <span class="qb-icon">🧳</span>
+        <div class="qb-label"><span class="es">Salida</span><span class="en" hidden>Check-out</span></div>
+        <div class="qb-sub"><span class="es">Partida</span><span class="en" hidden>Departure</span></div>
+      </div>
+      <div class="quick-btn" onclick="goTo('comer')">
+        <span class="qb-icon">🍽️</span>
+        <div class="qb-label"><span class="es">Comer</span><span class="en" hidden>Eat</span></div>
+        <div class="qb-sub"><span class="es">Sabores locales</span><span class="en" hidden>Local flavors</span></div>
+      </div>
+      <div class="quick-btn" onclick="goTo('explorar')">
+        <span class="qb-icon">🏰</span>
+        <div class="qb-label"><span class="es">Viejo SJ</span><span class="en" hidden>Old SJ</span></div>
+        <div class="qb-sub"><span class="es">Turismo</span><span class="en" hidden>Sightseeing</span></div>
+      </div>
+      <div class="quick-btn" onclick="goTo('transporte')">
+        <span class="qb-icon">🚗</span>
+        <div class="qb-label"><span class="es">Transporte</span><span class="en" hidden>Transport</span></div>
+        <div class="qb-sub"><span class="es">Moverse</span><span class="en" hidden>Getting around</span></div>
+      </div>
+      <div class="quick-btn" onclick="goTo('seguridad')">
+        <span class="qb-icon">🛡️</span>
+        <div class="qb-label"><span class="es">Seguridad</span><span class="en" hidden>Safety</span></div>
+        <div class="qb-sub"><span class="es">Consejos</span><span class="en" hidden>Tips</span></div>
+      </div>
+      <div class="quick-btn" onclick="goTo('historia')">
+        <span class="qb-icon">📜</span>
+        <div class="qb-label"><span class="es">Historia</span><span class="en" hidden>History</span></div>
+        <div class="qb-sub"><span class="es">Cultura</span><span class="en" hidden>Culture</span></div>
+      </div>
+      <div class="quick-btn" onclick="goTo('favoritos')">
+        <span class="qb-icon">🤍</span>
+        <div class="qb-label" id="nav-fav-label"><span class="es">Favoritos</span><span class="en" hidden>Favorites</span></div>
+        <div class="qb-sub"><span class="es">Tu lista</span><span class="en" hidden>Your list</span></div>
+      </div>
+    </div>
+
+    <a href="https://www.airbnb.com/users/profile/about?context=host" target="_blank" class="contact-bar">
+      <div class="cb-icon">🌿</div>
+      <div class="cb-text">
+        <div class="cb-title"><span class="es">Contáctame en Airbnb</span><span class="en" hidden>Message me on Airbnb</span></div>
+        <div class="cb-sub"><span class="es">Respondo en menos de 1 hora</span><span class="en" hidden>Reply within 1 hour</span></div>
+      </div>
+      <div class="cb-arrow">›</div>
+    </a>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     CHECK-IN
+════════════════════════════════════════════ -->
+<div id="screen-checkin" class="screen">
+  <div class="detail-header">
+    <button class="back-btn" onclick="goHome()">← <span class="es">Inicio</span><span class="en" hidden>Home</span></button>
+    <div class="detail-title">🔑 <span class="es">Llegada</span><span class="en" hidden>Check-in</span></div>
+    <div class="detail-sub"><span class="es">Tu entrada al paraíso</span><span class="en" hidden>Your arrival to paradise</span></div>
+  </div>
+  <div class="detail-body">
+    <div class="tip-card">🕐 <strong><span class="es">Check-in:</span><span class="en" hidden>Check-in:</span></strong> <span class="es">A partir de las 3:00 PM</span><span class="en" hidden>From 3:00 PM onwards</span></div>
+
+    <div class="step-card">
+      <div class="step-num step-verde">1</div>
+      <div class="step-content">
+        <div class="step-title"><span class="es">Confirma tu llegada</span><span class="en" hidden>Confirm your arrival</span></div>
+        <div class="step-desc"><span class="es">Envíame un mensaje por Airbnb 30 minutos antes de llegar para que esté listo para recibirte.</span><span class="en" hidden>Send me a message on Airbnb 30 minutes before arriving so I'm ready to welcome you.</span></div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num step-verde">2</div>
+      <div class="step-content">
+        <div class="step-title"><span class="es">Ubicación exacta</span><span class="en" hidden>Exact location</span></div>
+        <div class="step-desc"><span class="es">Estarás en el Viejo San Juan. Busca el edificio con la puerta azul colonial. Te enviaré la dirección exacta por Airbnb al confirmar la reservación.</span><span class="en" hidden>You'll be in Old San Juan. Look for the building with the colonial blue door. I'll send the exact address via Airbnb once your booking is confirmed.</span></div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num step-verde">3</div>
+      <div class="step-content">
+        <div class="step-title"><span class="es">Acceso a la propiedad</span><span class="en" hidden>Property access</span></div>
+        <div class="step-desc"><span class="es">El código de la caja de llaves te lo enviaré 24 horas antes de tu llegada. La caja está al lado derecho de la puerta principal.</span><span class="en" hidden>I'll send you the lockbox code 24 hours before arrival. The lockbox is to the right of the main door.</span></div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num step-gold">4</div>
+      <div class="step-content">
+        <div class="step-title"><span class="es">WiFi y comodidades</span><span class="en" hidden>WiFi & amenities</span></div>
+        <div class="step-desc"><span class="es">El WiFi: <strong>CasaRaices_SJU</strong> / Contraseña: <strong>Raices2025</strong>. Encontrarás agua fría, café local y toallas limpias esperándote.</span><span class="en" hidden>WiFi: <strong>CasaRaices_SJU</strong> / Password: <strong>Raices2025</strong>. You'll find cold water, local coffee and fresh towels waiting for you.</span></div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num step-cafe">5</div>
+      <div class="step-content">
+        <div class="step-title"><span class="es">Reglas de la casa</span><span class="en" hidden>House rules</span></div>
+        <div class="step-desc"><span class="es">🚭 No fumar dentro · 🐾 No mascotas · 🔇 Silencio 10PM–8AM · 🚫 No fiestas · 👥 Solo huéspedes registrados · ♻️ Recicla por favor</span><span class="en" hidden>🚭 No smoking indoors · 🐾 No pets · 🔇 Quiet 10PM–8AM · 🚫 No parties · 👥 Registered guests only · ♻️ Please recycle</span></div>
+      </div>
+    </div>
+    <div class="emergency-block">
+      <div class="emergency-title">📞 <span class="es">Contacto de emergencia</span><span class="en" hidden>Emergency contact</span></div>
+      <div class="emg-row">
+        <div class="emg-label">🌿 <span class="es">Anfitrión</span><span class="en" hidden>Host</span></div>
+        <a class="emg-num" href="tel:+17875550100">787-555-0100</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     CHECK-OUT
+════════════════════════════════════════════ -->
+<div id="screen-checkout" class="screen">
+  <div class="detail-header">
+    <button class="back-btn" onclick="goHome()">← <span class="es">Inicio</span><span class="en" hidden>Home</span></button>
+    <div class="detail-title">🧳 <span class="es">Salida</span><span class="en" hidden>Check-out</span></div>
+    <div class="detail-sub"><span class="es">Hasta la próxima aventura</span><span class="en" hidden>Until the next adventure</span></div>
+  </div>
+  <div class="detail-body">
+    <div class="warn-card">🕙 <strong><span class="es">Check-out:</span><span class="en" hidden>Check-out:</span></strong> <span class="es">Antes de las 11:00 AM</span><span class="en" hidden>Before 11:00 AM</span></div>
+    <div class="step-card">
+      <div class="step-num step-verde">1</div>
+      <div class="step-content">
+        <div class="step-title"><span class="es">Recoge tus pertenencias</span><span class="en" hidden>Collect your belongings</span></div>
+        <div class="step-desc"><span class="es">Revisa cajones, clósets, el cuarto de baño y el balcón. ¡Siempre se queda algo!</span><span class="en" hidden>Check drawers, closets, the bathroom and balcony. Something always gets left behind!</span></div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num step-verde">2</div>
+      <div class="step-content">
+        <div class="step-title"><span class="es">Ventanas y luces</span><span class="en" hidden>Windows and lights</span></div>
+        <div class="step-desc"><span class="es">Cierra todas las ventanas y apaga las luces, el A/C y el calentador de agua antes de salir.</span><span class="en" hidden>Close all windows and turn off lights, A/C and water heater before leaving.</span></div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num step-verde">3</div>
+      <div class="step-content">
+        <div class="step-title"><span class="es">Basura</span><span class="en" hidden>Trash</span></div>
+        <div class="step-desc"><span class="es">Deposita la basura en los contenedores del pasillo o en los zafacones de la calle. El reciclaje va en la bolsa azul.</span><span class="en" hidden>Place trash in the hallway containers or street bins. Recycling goes in the blue bag.</span></div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num step-verde">4</div>
+      <div class="step-content">
+        <div class="step-title"><span class="es">Llaves</span><span class="en" hidden>Keys</span></div>
+        <div class="step-desc"><span class="es">Deja las llaves dentro del apartamento y asegúrate de que la puerta quede cerrada con llave al salir.</span><span class="en" hidden>Leave the keys inside the apartment and make sure the door is locked when you leave.</span></div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num step-gold">5</div>
+      <div class="step-content">
+        <div class="step-title">⭐ <span class="es">¿Disfrutaste tu estadía?</span><span class="en" hidden>Did you enjoy your stay?</span></div>
+        <div class="step-desc"><span class="es">Una reseña de 5 estrellas me ayuda mucho y a otros viajeros también. ¡Gracias de corazón!</span><span class="en" hidden>A 5-star review helps me a lot and other travelers too. Thank you from the heart!</span></div>
+      </div>
+    </div>
+    <a href="https://www.airbnb.com/users/profile/about?context=host" target="_blank" class="contact-bar" style="margin-top:8px;">
+      <div class="cb-icon">⭐</div>
+      <div class="cb-text">
+        <div class="cb-title"><span class="es">Dejar una reseña</span><span class="en" hidden>Leave a Review</span></div>
+        <div class="cb-sub"><span class="es">Tu opinión importa mucho</span><span class="en" hidden>Your feedback matters</span></div>
+      </div>
+      <div class="cb-arrow">›</div>
+    </a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     COMER
+════════════════════════════════════════════ -->
+<div id="screen-comer" class="screen">
+  <div class="detail-header">
+    <button class="back-btn" onclick="goHome()">← <span class="es">Inicio</span><span class="en" hidden>Home</span></button>
+    <div class="detail-title">🍽️ <span class="es">Comer</span><span class="en" hidden>Eat</span></div>
+    <div class="detail-sub"><span class="es">Sabores auténticos del Viejo San Juan</span><span class="en" hidden>Authentic flavors of Old San Juan</span></div>
+  </div>
+  <div class="detail-body">
+    <div class="ornament">~ <span class="es">Económico · Buenas reseñas</span><span class="en" hidden>Budget-friendly · Great reviews</span> ~</div>
+
+    <div class="float-card">
+      <div class="card-head">
+        <div class="card-icon ico-verde">🥘</div>
+        <div class="card-name-wrap">
+          <div class="card-name">La Mallorca</div>
+          <div class="card-type"><span class="es">Desayuno · Almuerzo</span><span class="en" hidden>Breakfast · Lunch</span></div>
+        </div>
+        <button class="heart-btn" onclick="toggleHeart(this,'🥘','La Mallorca','<span class=es>Desayuno</span><span class=en hidden>Breakfast</span>')">🤍</button>
+      </div>
+      <div class="card-desc"><span class="es">Institución del Viejo SJ desde 1900. Prueba el pan mallorca con café con leche. Colas a toda hora pero vale la pena.</span><span class="en" hidden>Old San Juan institution since 1900. Try the mallorca bread with café con leche. Lines at all hours but worth every minute.</span></div>
+      <div class="card-budget">💰 <span class="price-tag">$5–$14</span></div>
+      <div class="card-btns">
+        <button class="map-btn" onclick="openMap('La Mallorca Old San Juan PR')">📍 <span class="es">Mapa</span><span class="en" hidden>Map</span></button>
+      </div>
+    </div>
+
+    <div class="float-card">
+      <div class="card-head">
+        <div class="card-icon ico-cafe">🫔</div>
+        <div class="card-name-wrap">
+          <div class="card-name">La Factoria</div>
+          <div class="card-type"><span class="es">Tapas · Cócteles artesanales</span><span class="en" hidden>Tapas · Craft cocktails</span></div>
+        </div>
+        <button class="heart-btn" onclick="toggleHeart(this,'🫔','La Factoria','<span class=es>Tapas</span><span class=en hidden>Tapas</span>')">🤍</button>
+      </div>
+      <div class="card-desc"><span class="es">Bar galardonado (Top 50 del mundo). Tapas españolas, cócteles creativos. Ambiente bohemio en una casa colonial con cuartos secretos.</span><span class="en" hidden>Award-winning bar (Top 50 World's Best Bars). Spanish tapas, creative cocktails. Bohemian vibe in a colonial house with hidden rooms.</span></div>
+      <div class="card-budget">💰💰 <span class="price-tag">$15–$35</span></div>
+      <div class="card-btns">
+        <button class="map-btn" onclick="openMap('La Factoria San Juan Puerto Rico')">📍 <span class="es">Mapa</span><span class="en" hidden>Map</span></button>
+        <button class="web-btn" onclick="window.open('https://www.facebook.com/LaFactoriaSJ','_blank')">🌐 Web</button>
+      </div>
+    </div>
+
+    <div class="ornament">~ <span class="es">Precio medio · Favoritos locales</span><span class="en" hidden>Mid-range · Local favorites</span> ~</div>
+
+    <div class="float-card">
+      <div class="card-head">
+        <div class="card-icon ico-gold">🍛</div>
+        <div class="card-name-wrap">
+          <div class="card-name">El Jibarito</div>
+          <div class="card-type"><span class="es">Comida criolla tradicional</span><span class="en" hidden>Traditional Puerto Rican</span></div>
+        </div>
+        <button class="heart-btn" onclick="toggleHeart(this,'🍛','El Jibarito','<span class=es>Criolla</span><span class=en hidden>Criolla</span>')">🤍</button>
+      </div>
+      <div class="card-desc"><span class="es">El mejor mofongo del Viejo San Juan. Ambiente familiar, porciones enormes. Favorito de los locales desde hace décadas. Pide el mofongo relleno.</span><span class="en" hidden>Best mofongo in Old San Juan. Family atmosphere, huge portions. Local favorite for decades. Order the stuffed mofongo.</span></div>
+      <div class="card-budget">💰💰 <span class="price-tag">$14–$28</span></div>
+      <div class="card-btns">
+        <button class="map-btn" onclick="openMap('El Jibarito Old San Juan Puerto Rico')">📍 <span class="es">Mapa</span><span class="en" hidden>Map</span></button>
+      </div>
+    </div>
+
+    <div class="float-card">
+      <div class="card-head">
+        <div class="card-icon ico-verde">🥗</div>
+        <div class="card-name-wrap">
+          <div class="card-name">Café Manolín</div>
+          <div class="card-type"><span class="es">Desayuno tradicional · Almuerzo</span><span class="en" hidden>Traditional breakfast · Lunch</span></div>
+        </div>
+        <button class="heart-btn" onclick="toggleHeart(this,'🥗','Café Manolín','<span class=es>Desayuno</span><span class=en hidden>Breakfast</span>')">🤍</button>
+      </div>
+      <div class="card-desc"><span class="es">Desayuno puertorriqueño clásico: huevos, salchichón, tostadas y café fuerte. Local auténtico, sin pretensiones, lleno de vida local.</span><span class="en" hidden>Classic Puerto Rican breakfast: eggs, sausage, toast and strong coffee. Authentic spot, unpretentious, full of local life.</span></div>
+      <div class="card-budget">💰 <span class="price-tag">$6–$16</span></div>
+      <div class="card-btns">
+        <button class="map-btn" onclick="openMap('Café Manolín San Juan Puerto Rico')">📍 <span class="es">Mapa</span><span class="en" hidden>Map</span></button>
+      </div>
+    </div>
+
+    <div class="ornament">~ <span class="es">Experiencia premium</span><span class="en" hidden>Premium experience</span> ~</div>
+
+    <div class="float-card">
+      <div class="card-head">
+        <div class="card-icon ico-earth">🦞</div>
+        <div class="card-name-wrap">
+          <div class="card-name">Marmalade Restaurant</div>
+          <div class="card-type"><span class="es">Alta cocina · Romántico</span><span class="en" hidden>Fine dining · Romantic</span></div>
+        </div>
+        <button class="heart-btn" onclick="toggleHeart(this,'🦞','Marmalade','<span class=es>Fine dining</span><span class=en hidden>Fine dining</span>')">🤍</button>
+      </div>
+      <div class="card-desc"><span class="es">Ganador de múltiples premios. Chef Peter Schintler crea menús degustación inspirados en el Caribe. La experiencia gastronómica más memorable del Viejo SJ.</span><span class="en" hidden>Multi-award winner. Chef Peter Schintler creates Caribbean-inspired tasting menus. The most memorable dining experience in Old SJ.</span></div>
+      <div class="card-budget">💰💰💰 <span class="price-tag">$45–$90</span></div>
+      <div class="card-btns">
+        <button class="map-btn" onclick="openMap('Marmalade Restaurant Old San Juan Puerto Rico')">📍 <span class="es">Mapa</span><span class="en" hidden>Map</span></button>
+        <button class="web-btn" onclick="window.open('https://www.marmaladepr.com','_blank')">🌐 Web</button>
+      </div>
+    </div>
+
+    <div class="float-card">
+      <div class="card-head">
+        <div class="card-icon ico-cafe">🍕</div>
+        <div class="card-name-wrap">
+          <div class="card-name">Señor Paleta</div>
+          <div class="card-type"><span class="es">Helados artesanales · Dulces</span><span class="en" hidden>Artisan ice cream · Sweets</span></div>
+        </div>
+        <button class="heart-btn" onclick="toggleHeart(this,'🍕','Señor Paleta','<span class=es>Helados</span><span class=en hidden>Ice cream</span>')">🤍</button>
+      </div>
+      <div class="card-desc"><span class="es">Las paletas más instagrameables de Puerto Rico. Sabores únicos: tamarindo picante, guanábana, coco tostado. Perfecto para el calor.</span><span class="en" hidden>The most Instagram-worthy popsicles in Puerto Rico. Unique flavors: spicy tamarind, soursop, toasted coconut. Perfect for the heat.</span></div>
+      <div class="card-budget">💰 <span class="price-tag">$4–$8</span></div>
+      <div class="card-btns">
+        <button class="map-btn" onclick="openMap('Señor Paleta Old San Juan Puerto Rico')">📍 <span class="es">Mapa</span><span class="en" hidden>Map</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     EXPLORAR – VIEJO SAN JUAN
+════════════════════════════════════════════ -->
+<div id="screen-explorar" class="screen">
+  <div class="detail-header">
+    <button class="back-btn" onclick="goHome()">← <span class="es">Inicio</span><span class="en" hidden>Home</span></button>
+    <div class="detail-title">🏰 <span class="es">Viejo San Juan</span><span class="en" hidden>Old San Juan</span></div>
+    <div class="detail-sub"><span class="es">500 años de historia a tu puerta</span><span class="en" hidden>500 years of history at your door</span></div>
+  </div>
+  <div class="detail-body">
+    <div class="tip-card">🚶 <span class="es">¡Todo queda a distancia caminable! El Viejo SJ es completamente peatonal y todo está a menos de 20 minutos a pie.</span><span class="en" hidden>Everything is walkable! Old SJ is pedestrian-friendly and everything is within 20 minutes on foot.</span></div>
+
+    <div class="float-card">
+      <div class="card-head">
+        <div class="card-icon ico-verde">🏯</div>
+        <div class="card-name-wrap">
+          <div class="card-name">El Morro (Castillo San Felipe)</div>
+          <div class="card-type"><span class="es">Fortaleza · Patrimonio de la UNESCO</span><span class="en" hidden>Fortress · UNESCO World Heritage</span></div>
+        </div>
+        <button class="heart-btn" onclick="toggleHeart(this,'🏯','El Morro','<span class=es>Fortaleza</span><span class=en hidden>Fortress</span>')">🤍</button>
+      </div>
+      <div class="card-desc"><span class="es">La fortaleza más icónica del Caribe. Construida en 1539, con vistas espectaculares al océano Atlántico. Llega al amanecer para evitar multitudes y ver los cometas volando en el campo.</span><span class="en" hidden>The most iconic fortress in the Caribbean. Built in 1539, with spectacular Atlantic Ocean views. Go at sunrise to avoid crowds and watch kites flying on the lawn.</span></div>
+      <div class="card-btns">
+        <button class="map-btn" onclick="openMap('Castillo San Felipe del Morro Old San Juan PR')">📍 <span class="es">Mapa</span><span class="en" hidden>Map</span></button>
+        <button class="web-btn" onclick="window.open('https://www.nps.gov/saju','_blank')">🌐 Web</button>
+      </div>
+    </div>
+
+    <div class="float-card">
+      <div class="card-head">
+        <div class="card-icon ico-cafe">🏰</div>
+        <div class="card-name-wrap">
+          <div class="card-name">Castillo San Cristóbal</div>
+          <div class="card-type"><span class="es">Fortaleza · Historia militar</span><span class="en" hidden>Fortress · Military history</span></div>
+        </div>
+        <button class="heart-btn" onclick="toggleHeart(this,'🏰','San Cristóbal','<span class=es>Fortaleza</span><span class=en hidden>Fortress</span>')">🤍</button>
+      </div>
+      <div class="card-desc"><span class="es">La fortaleza colonial más grande del mundo. Tiene tunnels secretos, calabozos y vistas 360° del Caribe. Entrada junto con El Morro: $10 por persona.</span><span class="en" hidden>The largest colonial fortress in the world. Features secret tunnels, dungeons and 360° Caribbean views. Entry with El Morro: $10 per person.</span></div>
+      <div class="card-btns">
+        <button class="map-btn" onclick="openMap('Castillo San Cristóbal Old San Juan Puerto Rico')">📍 <span class="es">Mapa</span><span class="en" hidden>Map</span></button>
+      </div>
+    </div>
+
+    <div class="float-card">
+      <div class="card-head">
+        <div class="card-icon ico-gold">🔵</div>
+        <div class="card-name-wrap">
+          <div class="card-name"><span class="es">Calles Adoquinadas</span><span class="en" hidden>Blue Cobblestone Streets</span></div>
+          <div class="card-type"><span class="es">Patrimonio histórico · Fotogénico</span><span class="en" hidden>Historic heritage · Photogenic</span></div>
+        </div>
+        <button class="heart-btn" onclick="toggleHeart(this,'🔵','Adoquines','<span class=es>Historia</span><span class=en hidden>History</span>')">🤍</button>
+      </div>
+      <div class="card-desc"><span class="es">Los famosos adoquines azules del Viejo SJ fueron hechos de escoria de hierro en el siglo 19 y traídos como lastre en barcos españoles. Calle del Sol y Calle Fortaleza son las más bonitas.</span><span class="en" hidden>The famous blue cobblestones of Old SJ were made from iron slag in the 19th century, brought as ballast on Spanish ships. Calle del Sol and Calle Fortaleza are the most beautiful.</span></div>
+      <div class="card-btns">
+        <button class="map-btn" onclick="openMap('Calle del Sol Old San Juan Puerto Rico')">📍 <span class="es">Mapa</span><span class="en" hidden>Map</span></button>
+      </div>
+    </div>
+
+    <div class="float-card">
+      <div class="card-head">
+        <div class="card-icon ico-verde">⛪</div>
+        <div class="card-name-wrap">
+          <div class="card-name">Catedral de San Juan Bautista</div>
+          <div class="card-type"><span class="es">Religioso · Histórico</span><span class="en" hidden>Religious · Historic</span></div>
+        </div>
+        <button class="heart-btn" onclick="toggleHeart(this,'⛪','Catedral SJ','<span class=es>Iglesia</span><span class=en hidden>Church</span>')">🤍</button>
+      </div>
+      <div class="card-desc"><span class="es">Segunda catedral más antigua del hemisferio occidental (1521). Aquí descansan los restos de Juan Ponce de León. Entrada gratuita, ambiente sereno.</span><span class="en" hidden>Second oldest cathedral in the Western Hemisphere (1521). Here rest the remains of Juan Ponce de León. Free entry, serene atmosphere.</span></div>
+      <div class="card-btns">
+        <button class="map-btn" onclick="openMap('Catedral de San Juan Bautista Puerto Rico')">📍 <span class="es">Mapa</span><span class="en" hidden>Map</span></button>
+      </div>
+    </div>
+
+    <div class="float-card">
+      <div class="card-head">
+        <div class="card-icon ico-earth">🌊</div>
+        <div class="card-name-wrap">
+          <div class="card-name">La Perla</div>
+          <div class="card-type"><span class="es">Barrio histórico · Murales · Despacito</span><span class="en" hidden>Historic neighborhood · Murals · Despacito</span></div>
+        </div>
+        <button class="heart-btn" onclick="toggleHeart(this,'🌊','La Perla','<span class=es>Barrio</span><span class=en hidden>Neighborhood</span>')">🤍</button>
+      </div>
+      <div class="card-desc"><span class="es">Barrio donde se filmó el video de "Despacito". Bellísimo desde la muralla, murales coloridos. <strong>Visita solo de día</strong> y preferiblemente con un guía local.</span><span class="en" hidden>Neighborhood where the "Despacito" video was filmed. Beautiful from the city wall, colorful murals. <strong>Visit daytime only</strong> and ideally with a local guide.</span></div>
+      <div class="card-btns">
+        <button class="map-btn" onclick="openMap('La Perla San Juan Puerto Rico')">📍 <span class="es">Mapa</span><span class="en" hidden>Map</span></button>
+      </div>
+    </div>
+
+    <div class="float-card">
+      <div class="card-head">
+        <div class="card-icon ico-gold">🌺</div>
+        <div class="card-name-wrap">
+          <div class="card-name">Plaza de Armas</div>
+          <div class="card-type"><span class="es">Plaza central · Vida local</span><span class="en" hidden>Central square · Local life</span></div>
+        </div>
+        <button class="heart-btn" onclick="toggleHeart(this,'🌺','Plaza de Armas','<span class=es>Plaza</span><span class=en hidden>Square</span>')">🤍</button>
+      </div>
+      <div class="card-desc"><span class="es">El corazón del Viejo San Juan. Perfecta para descansar, ver artistas callejeros y sentir el pulso de la ciudad. La fuente central es de 1840.</span><span class="en" hidden>The heart of Old San Juan. Perfect for resting, watching street artists and feeling the pulse of the city. The central fountain dates to 1840.</span></div>
+      <div class="card-btns">
+        <button class="map-btn" onclick="openMap('Plaza de Armas Old San Juan Puerto Rico')">📍 <span class="es">Mapa</span><span class="en" hidden>Map</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     HISTORIA
+════════════════════════════════════════════ -->
+<div id="screen-historia" class="screen">
+  <div class="detail-header">
+    <button class="back-btn" onclick="goHome()">← <span class="es">Inicio</span><span class="en" hidden>Home</span></button>
+    <div class="detail-title">📜 <span class="es">Historia & Cultura</span><span class="en" hidden>History & Culture</span></div>
+    <div class="detail-sub"><span class="es">Raíces que nutren el alma</span><span class="en" hidden>Roots that nourish the soul</span></div>
+  </div>
+  <div class="detail-body">
+    <div class="tip-card">🌿 <span class="es"><strong>Casa Raíces</strong> está ubicada en el corazón del segundo asentamiento europeo más antiguo de América. Cada piedra tiene una historia.</span><span class="en" hidden><strong>Casa Raíces</strong> sits in the heart of the second oldest European settlement in the Americas. Every stone has a story.</span></div>
+
+    <div class="float-card">
+      <div class="card-head">
+        <div class="card-icon ico-verde">🎨</div>
+        <div class="card-name-wrap">
+          <div class="card-name">Museo de Arte de Puerto Rico</div>
+          <div class="card-type"><span class="es">Arte · Cultura nacional</span><span class="en" hidden>Art · National culture</span></div>
+        </div>
+        <button class="heart-btn" onclick="toggleHeart(this,'🎨','Museo de Arte PR','<span class=es>Arte</span><span class=en hidden>Art</span>')">🤍</button>
+      </div>
+      <div class="card-desc"><span class="es">El museo más importante de la isla con obras desde el período colonial hasta el arte contemporáneo. Jardín de esculturas espectacular. En Santurce, a 10 min en Uber.</span><span class="en" hidden>The island's most important museum, featuring works from the colonial period to contemporary art. Spectacular sculpture garden. In Santurce, 10 min by Uber.</span></div>
+      <div class="card-btns">
+        <button class="map-btn" onclick="openMap('Museo de Arte de Puerto Rico Santurce')">📍 <span class="es">Mapa</span><span class="en" hidden>Map</span></button>
+        <button class="web-btn" onclick="window.open('https://www.mapr.org','_blank')">🌐 Web</button>
+      </div>
+    </div>
+
+    <div class="float-card">
+      <div class="card-head">
+        <div class="card-icon ico-gold">🏛️</div>
+        <div class="card-name-wrap">
+          <div class="card-name">Museo de las Américas</div>
+          <div class="card-type"><span class="es">Historia · Cultura americana</span><span class="en" hidden>History · American culture</span></div>
+        </div>
+        <button class="heart-btn" onclick="toggleHeart(this,'🏛️','Museo Américas','<span class=es>Historia</span><span class=en hidden>History</span>')">🤍</button>
+      </div>
+      <div class="card-desc"><span class="es">Dentro del histórico Cuartel de Ballajá. Exhibiciones sobre la herencia africana, indígena y europea en América. Gratis los miércoles.</span><span class="en" hidden>Inside the historic Cuartel de Ballajá. Exhibits on African, indigenous and European heritage in the Americas. Free on Wednesdays.</span></div>
+      <div class="card-btns">
+        <button class="map-btn" onclick="openMap('Museo de las Americas Old San Juan Puerto Rico')">📍 <span class="es">Mapa</span><span class="en" hidden>Map</span></button>
+      </div>
+    </div>
+
+    <div class="float-card">
+      <div class="card-head">
+        <div class="card-icon ico-cafe">🌿</div>
+        <div class="card-name-wrap">
+          <div class="card-name">La Placita de Santurce</div>
+          <div class="card-type"><span class="es">Mercado · Vida nocturna local</span><span class="en" hidden>Market · Local nightlife</span></div>
+        </div>
+        <button class="heart-btn" onclick="toggleHeart(this,'🌿','La Placita','<span class=es>Mercado</span><span class=en hidden>Market</span>')">🤍</button>
+      </div>
+      <div class="card-desc"><span class="es">De día es mercado de frutas y comida criolla. De noche (jueves a sábado) se convierte en el epicentro de la vida nocturna santurcina. Auténtico, sin turistas, pura esencia local.</span><span class="en" hidden>By day it's a fruit and local food market. By night (Thu–Sat) it becomes the epicenter of Santurce nightlife. Authentic, tourist-free, pure local essence.</span></div>
+      <div class="card-btns">
+        <button class="map-btn" onclick="openMap('La Placita Santurce San Juan Puerto Rico')">📍 <span class="es">Mapa</span><span class="en" hidden>Map</span></button>
+      </div>
+    </div>
+
+    <div class="float-card">
+      <div class="card-head">
+        <div class="card-icon ico-verde">🌴</div>
+        <div class="card-name-wrap">
+          <div class="card-name">El Yunque National Forest</div>
+          <div class="card-type"><span class="es">Naturaleza · Excursión de día</span><span class="en" hidden>Nature · Day trip</span></div>
+        </div>
+        <button class="heart-btn" onclick="toggleHeart(this,'🌴','El Yunque','<span class=es>Naturaleza</span><span class=en hidden>Nature</span>')">🤍</button>
+      </div>
+      <div class="card-desc"><span class="es">El único bosque tropical lluvioso en el Sistema Nacional de Parques de EE.UU. A 45 min de aquí. Cascadas, cotorras puertorriqueñas y mística natural única. Reservación obligatoria.</span><span class="en" hidden>The only tropical rainforest in the US National Parks System. 45 min away. Waterfalls, Puerto Rican parrots and unique natural mystique. Reservation required.</span></div>
+      <div class="card-btns">
+        <button class="map-btn" onclick="openMap('El Yunque National Forest Puerto Rico')">📍 <span class="es">Mapa</span><span class="en" hidden>Map</span></button>
+        <button class="web-btn" onclick="window.open('https://www.recreation.gov/timed-entry/10087515','_blank')">🎫 <span class="es">Reservar</span><span class="en" hidden>Reserve</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     TRANSPORTE
+════════════════════════════════════════════ -->
+<div id="screen-transporte" class="screen">
+  <div class="detail-header">
+    <button class="back-btn" onclick="goHome()">← <span class="es">Inicio</span><span class="en" hidden>Home</span></button>
+    <div class="detail-title">🚗 <span class="es">Transporte</span><span class="en" hidden>Transportation</span></div>
+    <div class="detail-sub"><span class="es">Moverse por San Juan</span><span class="en" hidden>Getting around San Juan</span></div>
+  </div>
+  <div class="detail-body">
+    <div class="tip-card">🚶 <span class="es">El Viejo San Juan se recorre fácilmente a pie. Para salir a otros barrios, usa Uber o taxi.</span><span class="en" hidden>Old San Juan is easily walkable. To reach other neighborhoods, use Uber or taxis.</span></div>
+
+    <div class="step-card">
+      <div class="step-num step-verde">🚖</div>
+      <div class="step-content">
+        <div class="step-title">Uber</div>
+        <div class="step-desc"><span class="es">La opción más conveniente y confiable. Disponible 24/7 en toda el área metropolitana. Descarga la app antes de llegar. Estimado al aeropuerto: $15–$25.</span><span class="en" hidden>The most convenient and reliable option. Available 24/7 throughout the metro area. Download the app before arriving. Airport estimate: $15–$25.</span></div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num step-gold">🚕</div>
+      <div class="step-content">
+        <div class="step-title"><span class="es">Taxis Autorizados</span><span class="en" hidden>Authorized Taxis</span></div>
+        <div class="step-desc"><span class="es">Los taxis blancos con logo oficial tienen tarifa fija del aeropuerto al Viejo SJ: <strong>$27</strong>. Siempre exige que enciendan el taxímetro o confirma tarifa antes. En la calle Fortaleza suelen estar disponibles.</span><span class="en" hidden>White official-logo taxis have a fixed rate from the airport to Old SJ: <strong>$27</strong>. Always ask them to use the meter or confirm fare before. Taxis are usually available on Calle Fortaleza.</span></div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num step-verde">🚌</div>
+      <div class="step-content">
+        <div class="step-title">AMA / Metrobús</div>
+        <div class="step-desc"><span class="es">La AMA (Autoridad Metropolitana de Autobuses) ofrece rutas por toda el área metro. Tarifa: $0.75 exactos (no dan cambio). Ruta T5 conecta Viejo SJ con Hato Rey y Condado.</span><span class="en" hidden>The AMA (Metropolitan Bus Authority) offers routes throughout the metro area. Fare: $0.75 exact change (no change given). Route T5 connects Old SJ with Hato Rey and Condado.</span></div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num step-verde">🚈</div>
+      <div class="step-content">
+        <div class="step-title">Tren Urbano</div>
+        <div class="step-desc"><span class="es">El tren va desde Bayamón hasta Santurce. Estación más cercana: Old San Juan/Covadonga. Tarifa: $1.50. Ideal para ir a centros comerciales en Río Piedras o Bayamón.</span><span class="en" hidden>The train runs from Bayamón to Santurce. Nearest station: Old San Juan/Covadonga. Fare: $1.50. Ideal for shopping centers in Río Piedras or Bayamón.</span></div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num step-cafe">⛵</div>
+      <div class="step-content">
+        <div class="step-title"><span class="es">Ferry a Cataño (Bacardí)</span><span class="en" hidden>Ferry to Cataño (Bacardí)</span></div>
+        <div class="step-desc"><span class="es">Desde el Muelle 2 del Viejo SJ. Sale cada 30 minutos. Tarifa: $0.50. Te lleva directo a la Destilería Bacardí. Una de las experiencias más baratas y divertidas de SJ.</span><span class="en" hidden>From Pier 2 in Old SJ. Departs every 30 minutes. Fare: $0.50. Takes you directly to the Bacardí Distillery. One of the cheapest and most fun experiences in SJ.</span></div>
+      </div>
+    </div>
+
+    <div class="warn-card">⚠️ <span class="es"><strong>Importante:</strong> En Puerto Rico se maneja por la derecha (igual que EE.UU.). Si rentas carro, evita el área del Viejo SJ —el estacionamiento es muy difícil y costoso.</span><span class="en" hidden><strong>Important:</strong> In Puerto Rico you drive on the right (same as the US). If renting a car, avoid the Old SJ area — parking is very difficult and expensive.</span></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SEGURIDAD
+════════════════════════════════════════════ -->
+<div id="screen-seguridad" class="screen">
+  <div class="detail-header">
+    <button class="back-btn" onclick="goHome()">← <span class="es">Inicio</span><span class="en" hidden>Home</span></button>
+    <div class="detail-title">🛡️ <span class="es">Seguridad</span><span class="en" hidden>Safety</span></div>
+    <div class="detail-sub"><span class="es">Viaja con confianza y tranquilidad</span><span class="en" hidden>Travel with confidence and peace of mind</span></div>
+  </div>
+  <div class="detail-body">
+
+    <div class="emergency-block">
+      <div class="emergency-title">🚨 <span class="es">Números de Emergencia</span><span class="en" hidden>Emergency Numbers</span></div>
+      <div class="emg-row">
+        <div class="emg-label">🚒 <span class="es">Bomberos / Policía</span><span class="en" hidden>Fire / Police</span></div>
+        <a class="emg-num" href="tel:911">911</a>
+      </div>
+      <div class="emg-row">
+        <div class="emg-label">🏥 <span class="es">Hospital Auxilio Mutuo</span><span class="en" hidden>Auxilio Mutuo Hospital</span></div>
+        <a class="emg-num" href="tel:+17878598000">787-859-8000</a>
+      </div>
+      <div class="emg-row">
+        <div class="emg-label">👮 <span class="es">Policía Municipal SJ</span><span class="en" hidden>SJ Municipal Police</span></div>
+        <a class="emg-num" href="tel:+17877267020">787-726-7020</a>
+      </div>
+      <div class="emg-row">
+        <div class="emg-label">🌿 <span class="es">Anfitrión</span><span class="en" hidden>Host</span></div>
+        <a class="emg-num" href="tel:+17875550100">787-555-0100</a>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num step-danger">!</div>
+      <div class="step-content">
+        <div class="step-title"><span class="es">Objetos de valor en el carro</span><span class="en" hidden>Valuables in the car</span></div>
+        <div class="step-desc"><span class="es">Nunca dejes pertenencias visibles dentro del carro, incluso por segundos. Esto aplica en todo PR, no solo en el Viejo SJ.</span><span class="en" hidden>Never leave visible belongings inside a car, even for seconds. This applies throughout PR, not just in Old SJ.</span></div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num step-danger">!</div>
+      <div class="step-content">
+        <div class="step-title"><span class="es">Zonas nocturnas</span><span class="en" hidden>Nighttime areas</span></div>
+        <div class="step-desc"><span class="es">El Viejo SJ es seguro de noche en zonas turísticas. Evita aventurarte solo por calles oscuras o desconocidas después de las 11PM. Usa Uber para moverte.</span><span class="en" hidden>Old SJ is safe at night in tourist areas. Avoid wandering alone through dark or unfamiliar streets after 11PM. Use Uber to get around.</span></div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num step-danger">!</div>
+      <div class="step-content">
+        <div class="step-title"><span class="es">La Perla: solo de día</span><span class="en" hidden>La Perla: daytime only</span></div>
+        <div class="step-desc"><span class="es">Este barrio pintoresco se visita únicamente durante el día y nunca solo. Pregúntame y te recomiendo guías locales de confianza.</span><span class="en" hidden>This picturesque neighborhood should only be visited during the day and never alone. Ask me and I'll recommend trusted local guides.</span></div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num step-gold">☀️</div>
+      <div class="step-content">
+        <div class="step-title"><span class="es">Sol intenso tropical</span><span class="en" hidden>Intense tropical sun</span></div>
+        <div class="step-desc"><span class="es">El sol en PR es muy fuerte. Usa protector solar SPF 50+ y renuévalo cada 2 horas. Hidratación constante es esencial —mínimo 2 litros de agua al día.</span><span class="en" hidden>The sun in PR is very strong. Use SPF 50+ sunscreen and reapply every 2 hours. Constant hydration is essential — minimum 2 liters of water per day.</span></div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num step-gold">💧</div>
+      <div class="step-content">
+        <div class="step-title"><span class="es">Agua corriente</span><span class="en" hidden>Tap water</span></div>
+        <div class="step-desc"><span class="es">El agua del grifo en San Juan es potable y tratada. Puede tener sabor distinto al que estás acostumbrado —te recomiendo usar el filtro de la nevera del apartamento.</span><span class="en" hidden>Tap water in San Juan is potable and treated. It may taste different than what you're used to — I recommend using the refrigerator filter in the apartment.</span></div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num step-info">⚡</div>
+      <div class="step-content">
+        <div class="step-title"><span class="es">Apagones (AEE)</span><span class="en" hidden>Power outages (AEE)</span></div>
+        <div class="step-desc"><span class="es">Puerto Rico puede tener apagones ocasionales, especialmente en verano. El apartamento tiene linternas en el cajón de la cocina. El generador del edificio se enciende automáticamente.</span><span class="en" hidden>Puerto Rico may experience occasional power outages, especially in summer. The apartment has flashlights in the kitchen drawer. The building's generator turns on automatically.</span></div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num step-info">🌀</div>
+      <div class="step-content">
+        <div class="step-title"><span class="es">Temporada de huracanes</span><span class="en" hidden>Hurricane season</span></div>
+        <div class="step-desc"><span class="es">Junio–Noviembre es temporada oficial. Si visitas en estos meses, sigue las alertas del <a href="https://www.nhc.noaa.gov" target="_blank" style="color:var(--verde);">NHC</a> y el <a href="https://www.estado.pr.gov" target="_blank" style="color:var(--verde);">Gobierno de PR</a>. Te contactaré si hay alguna alerta.</span><span class="en" hidden>June–November is official season. If visiting during these months, follow alerts from <a href="https://www.nhc.noaa.gov" target="_blank" style="color:var(--verde);">NHC</a> and <a href="https://www.estado.pr.gov" target="_blank" style="color:var(--verde);">PR Government</a>. I'll contact you if there's any alert.</span></div>
+      </div>
+    </div>
+
+    <div class="info-card">ℹ️ <span class="es">El Viejo San Juan es un barrio principalmente turístico y bien patrullado. Siempre confía en tu instinto —si algo se siente mal, aléjate. ¡Puerto Rico te da la bienvenida!</span><span class="en" hidden>Old San Juan is a primarily tourist and well-patrolled neighborhood. Always trust your instincts — if something feels off, leave the area. Puerto Rico welcomes you!</span></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     CONTACTO
+════════════════════════════════════════════ -->
+<div id="screen-contacto" class="screen">
+  <div class="detail-header">
+    <button class="back-btn" onclick="goHome()">← <span class="es">Inicio</span><span class="en" hidden>Home</span></button>
+    <div class="detail-title">💬 <span class="es">Contacto</span><span class="en" hidden>Contact</span></div>
+    <div class="detail-sub"><span class="es">Estoy aquí para ayudarte</span><span class="en" hidden>I'm here to help you</span></div>
+  </div>
+  <div class="detail-body">
+    <div class="tip-card">🌿 <span class="es">La forma más rápida de contactarme es a través de la plataforma de Airbnb. Respondo en menos de una hora.</span><span class="en" hidden>The fastest way to reach me is through the Airbnb platform. I respond within one hour.</span></div>
+    <a href="https://www.airbnb.com/users/profile/about?context=host" target="_blank" class="contact-bar" style="margin-bottom:14px;">
+      <div class="cb-icon">🌿</div>
+      <div class="cb-text">
+        <div class="cb-title"><span class="es">Mensaje en Airbnb</span><span class="en" hidden>Message on Airbnb</span></div>
+        <div class="cb-sub"><span class="es">Respuesta garantizada en &lt;1 hora</span><span class="en" hidden>Guaranteed reply in &lt;1 hour</span></div>
+      </div>
+      <div class="cb-arrow">›</div>
+    </a>
+    <div class="step-card">
+      <div class="step-num step-verde">📞</div>
+      <div class="step-content">
+        <div class="step-title"><span class="es">Teléfono directo</span><span class="en" hidden>Direct phone</span></div>
+        <div class="step-desc"><span class="es">Solo para emergencias reales: <a href="tel:+17875550100" style="color:var(--verde);font-weight:700;">787-555-0100</a></span><span class="en" hidden>For real emergencies only: <a href="tel:+17875550100" style="color:var(--verde);font-weight:700;">787-555-0100</a></span></div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num step-gold">⭐</div>
+      <div class="step-content">
+        <div class="step-title"><span class="es">¿Lo estás pasando bien?</span><span class="en" hidden>Are you having a great time?</span></div>
+        <div class="step-desc"><span class="es">Una reseña de 5 estrellas al final de tu estadía significa el mundo para mí. ¡Gracias de corazón por elegir Casa Raíces!</span><span class="en" hidden>A 5-star review at the end of your stay means the world to me. Thank you from the heart for choosing Casa Raíces!</span></div>
+      </div>
+    </div>
+    <div class="ornament">🌿 Casa Raíces San Juan · Hecho con amor 🌿</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     FAVORITOS
+════════════════════════════════════════════ -->
+<div id="screen-favoritos" class="screen">
+  <div class="detail-header">
+    <button class="back-btn" onclick="goHome()">← <span class="es">Inicio</span><span class="en" hidden>Home</span></button>
+    <div class="detail-title">❤️ <span class="es">Mis Favoritos</span><span class="en" hidden>My Favorites</span></div>
+    <div class="detail-sub"><span class="es">Tus lugares guardados</span><span class="en" hidden>Your saved places</span></div>
+  </div>
+  <div class="detail-body">
+    <div id="fav-list"></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     BOTTOM NAV
+════════════════════════════════════════════ -->
+<nav id="bottom-nav">
+  <div class="nav-item active" onclick="goHome()" id="nav-home">
+    <div class="nav-icon">🌿</div>
+    <div class="nav-label"><span class="es">Inicio</span><span class="en" hidden>Home</span></div>
+  </div>
+  <div class="nav-item" onclick="goTo('checkin')" id="nav-checkin">
+    <div class="nav-icon">🔑</div>
+    <div class="nav-label"><span class="es">Entrada</span><span class="en" hidden>Check-in</span></div>
+  </div>
+  <div class="nav-item" onclick="goTo('checkout')" id="nav-checkout">
+    <div class="nav-icon">🧳</div>
+    <div class="nav-label"><span class="es">Salida</span><span class="en" hidden>Check-out</span></div>
+  </div>
+  <div class="nav-item" onclick="goTo('favoritos')" id="nav-favoritos">
+    <div class="nav-icon" id="nav-heart-icon">🤍</div>
+    <div class="nav-label"><span class="es">Guardados</span><span class="en" hidden>Saved</span></div>
+  </div>
+  <div class="nav-item" onclick="goTo('contacto')" id="nav-contacto">
+    <div class="nav-icon">💬</div>
+    <div class="nav-label"><span class="es">Contacto</span><span class="en" hidden>Contact</span></div>
+  </div>
+</nav>
+
+</div><!-- /app -->
+
+<script>
+// ── LANG ──
+let lang = 'es';
+function toggleLang() {
+  lang = lang === 'es' ? 'en' : 'es';
+  document.querySelectorAll('.es,.en').forEach(el => {
+    el.hidden = !el.classList.contains(lang);
+  });
+  document.getElementById('lang-btn').textContent = lang === 'es' ? '🌿 ES / EN' : '🌿 EN / ES';
+}
+
+// ── NAVIGATION ──
+const screens = ['home','checkin','checkout','comer','explorar','historia','transporte','seguridad','contacto','favoritos'];
+const navMap   = {home:'nav-home',checkin:'nav-checkin',checkout:'nav-checkout',favoritos:'nav-favoritos',contacto:'nav-contacto'};
+
+function goTo(id) {
+  screens.forEach(s => {
+    const el = document.getElementById('screen-'+s);
+    if (el) { el.classList.toggle('active', s === id); }
+  });
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (navMap[id]) document.getElementById(navMap[id]).classList.add('active');
+  window.scrollTo(0, 0);
+  if (id === 'favoritos') renderFavList();
+}
+function goHome() { goTo('home'); }
+
+// ── WIFI ──
+function copyWifi() {
+  navigator.clipboard ? navigator.clipboard.writeText('Raices2025') : (()=>{
+    const t = document.createElement('textarea'); t.value='Raices2025';
+    document.body.appendChild(t); t.select(); document.execCommand('copy'); document.body.removeChild(t);
+  })();
+  showToast();
+}
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// ── MAPS ──
+function openMap(q) { window.open('https://maps.google.com/maps/search/'+encodeURIComponent(q),'_blank'); }
+
+// ── FAVORITES ──
+let favs = {};
+function toggleHeart(btn, icon, name, cat) {
+  const id = name.replace(/[^a-z0-9]/gi,'_').toLowerCase();
+  if (favs[id]) {
+    delete favs[id];
+    btn.textContent = '🤍';
+  } else {
+    favs[id] = { icon, name, cat };
+    btn.textContent = '❤️';
+    btn.style.transform = 'scale(1.4)';
+    setTimeout(() => btn.style.transform = '', 250);
+  }
+  const count = Object.keys(favs).length;
+  document.getElementById('nav-heart-icon').textContent = count > 0 ? '❤️' : '🤍';
+}
+
+function renderFavList() {
+  const list = document.getElementById('fav-list');
+  const keys = Object.keys(favs);
+  if (!keys.length) {
+    list.innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--text-light);"><div style="font-size:48px;margin-bottom:12px;">🤍</div><div style="font-family:Caveat,cursive;font-size:20px;margin-bottom:6px;"><span class=es>Aún no tienes favoritos</span><span class=en '+(lang==='es'?'hidden':'')+'>No favorites yet</span></div><div style="font-size:13px;"><span class=es>Toca el 🤍 en los lugares que te gusten</span><span class=en '+(lang==='es'?'hidden':'')+'>Tap 🤍 on places you like</span></div></div>';
+    return;
+  }
+  let html = '<div class="fav-count">❤️ '+keys.length+'</div>';
+  keys.forEach(id => {
+    const f = favs[id];
+    html += '<div class="fav-card"><div class="fav-icon">'+f.icon+'</div><div class="fav-info"><div class="fav-name">'+f.name+'</div><div class="fav-cat">'+f.cat+'</div></div><button class="remove-btn" onclick="removeFav(\''+id+'\',event)">✕</button></div>';
+  });
+  list.innerHTML = html;
+}
+
+function removeFav(id, e) {
+  delete favs[id];
+  // also reset heart btn on other screens
+  document.querySelectorAll('.heart-btn').forEach(btn => {
+    if (btn.textContent === '❤️') {
+      // find associated card and check name
+    }
+  });
+  const count = Object.keys(favs).length;
+  document.getElementById('nav-heart-icon').textContent = count > 0 ? '❤️' : '🤍';
+  renderFavList();
+}
+</script>
+</body>
+</html>
